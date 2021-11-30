@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "diagnosis-plus",
+  "private_key_id": "f36bbd1c2da5ee615a86b6b770da2d94579d9d83",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCwHojXwlbs6EKW\nawWbaRJp7AxQbGnLRjWboiitvWAPlNJlz2VOKRJh6KOu0vFAwQWn0Msyb+3wu+y3\nyqVid6zud3jVI9f1Bqpiu2k121ZAU/C9U1sNTdqGglRsipETYkl05RiSH0/CNdok\nxgelrrqCtxwKa6rgfnf8Nb+sY9YeIppeFjgOL/plZ7XKCxa+ljv4Jyzg4J/GW5PS\nI3eDlbW5xkoRIqEHbtOZYclXEliKjHf1V1PVNg0cuntL6yXb4Jnrw7twProt9paI\n+rtKeBaOJu+AgFMBYUOEOUQr8fpVlxcsn6dxnM9gEOL9gaGAwhwgybrlQE9i0ssM\nkfuB0MfXAgMBAAECggEAAjZH98+Y1ix0cr15pfZ2vycDsdpaAlyMbwDCWn4ady1z\n1zyy77eyb0XsnRrrm8x2qH5uoRrFym58ueCYwFvncVz0JeL+3SkflwDe9QLNvWPq\nsQPhO2L0cS/IU8NmsJ4LuvaKNlP9WbEQSAg7b4nLx6IQfyR2xr4Oco8vLBKJHvqS\ndpwtnxk8BlW0g++onUYwjEwJQmxfL0qUYQn8L5Oz0Zx2EpnarKEN44ndrIARcY7R\nyxOxRp2lkHIBJ67h4loBSq9ZGbGqQa1trijIqymd7m5Ir1tX2OSNhwCbBv6SEdUy\niCwUhVVhSSv4IZyBGMA+uhulxjFt7UQHwsgMfdifWQKBgQDsiQUVa+wVxnklidbK\nA0UFEuHDFrS8shDTFR3T/NyN22D26Rm6Boo774eTjHBR5ekX3kIH5AYq612ztihF\npWJ0hx1i0pv6/jpuDIr9/+eBjrEMor6brcl3QuzydAEpNYa57fxiYM818bVgHi18\ns3wAizfh513gQvnqPsl1P3rz2QKBgQC+nMJZwFJxlXIGKaxGj44AKaqLDTkV1eVF\nCMtMNp4WmF/3Z48oMU95TCV2xtqXAmxqg0ZwXHOVmatVePBubNcQL4mWnrn9GOdD\nNIx9gmaCsLWJIClqWZb12ymBcN+tcjpLCO0aEyNiuGy4XliwBlJp2Q32Gy7VXtMz\neg4FHIM7LwKBgDIS58KbMEWD2M27mn71pjzmvGiCfAyeXbVx+PiRxVc6pBJhUpLx\nI36AvODdkEGmPGxTHwNwoGWhohqTa38i/e7RU8VB9Mdz3obBnQMck7P3sz+LjHKE\nnevjfSnuqPhCXp0p5o4lFHjFDLKmcNa/YHb1AgWO5268fw+57wglQjAxAoGAFqO3\n0cEuCZ+ec2zvsVHLo+lPAEUJyrYlDRYGT38NN9HRVClQr41ryxRoPrtPqy/2gJAn\nBaF1eQdPek9q/zKeOKXsyZ8AqDcVAL51EVMzqcIjTa4sPR12+KyXOXCWoJs4oUDm\nKHqtcURGZX+PORkHINtO9TQ1U9J3c13D3IeObrECgYBW/S3VUWx/vj3fSkET29eE\nJt6JERQSc1eNNTmm6UTHXA/dYJkhxoJ9f3TFvZcVsPA8x/6UFM45LUswpfulFipi\nAAXGckFPWfbG93Hxq69Ph3453M7aekHI5CppVnmrR0uf7GXCZVLkNs6juj9g9ROi\n2hLb8Vxtz2bd//KAbMKkcQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "diagnosis-plusserviceaccount@diagnosis-plus.iam.gserviceaccount.com",
+  "client_id": "118213154962996848874",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/diagnosis-plusserviceaccount%40diagnosis-plus.iam.gserviceaccount.com"
+}

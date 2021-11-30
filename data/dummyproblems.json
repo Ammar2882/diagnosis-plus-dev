@@ -1,0 +1,98 @@
+[
+    {
+    "patientID": "613730f173aede3850005d7b",
+    "doctorId": "6152e43b028e483e485e0a30",
+    "fullBodyCoordinates":["lorem", "ipsum"],
+    "symptoms": ["symptom1", "symptom 2"],
+    "symptomsStarted": "1998-6-20",
+    "symptomsDevelop":"gradually",
+    "isInjury":"true",
+    "Details":"fell down the well",
+    "symptomsDuration":"one week",
+    "symptomsAtBest":"weak",
+    "symptomsAtWorst": "intense",
+    "isRadiate": "false",
+    "radiateAt": "head",
+    "radiateDetails": "radiate details",
+
+    
+    "radiationDistribution": ["left","right"],
+    "aggravatingFactors": ["walking", "pivoting"],
+    "alleviatingFactors": ["ice"],
+    "isPreviousTreatment": "true",
+    "previusTreatmentInclude": ["cortisol"],
+    "otherTreatments": "none",
+    "currentMedications":["panadol","disprin"],
+    "painMedications": ["med1", "med2"],
+    "newMedications": ["newMed 1", "newMed 2"]
+}
+]
+
+[
+    {
+        "dignosis": {
+            "doctorId":"6165514dc124b020175aad83",
+            "vitals":{
+                "height":167, 
+                "weight":65, 
+                "BP":"160/82", 
+                "heartrate":"142/85", 
+                "BMI":24, 
+                "respiratory":255 
+            },
+            "physicalExam": ["lorem", "ipsum", "dolor"],
+            "prescribedMedicine": ["medicine1", "medicine2", "medicine3"],
+            "specialTests":[{
+                "bodyPart": "Leg",
+                "test":[{
+                    "testName": "specialTestForLeg1",
+                    "isLeftPass":false,
+                    "isRightPass":true
+                },{
+                    "testName": "specialTestForLeg2",
+                    "isLeftPass":true,
+                    "isRightPass":true
+                }]
+            },{
+                "bodyPart": "Arm",
+                "tests":[{
+                    "testName": "specialTestForArm1",
+                    "isLeftPass":false,
+                    "isRightPass": true
+                },{
+                    "testName": "specialTestForArm2",
+                    "isLeftPass":true,
+                    "isRightPass": false
+                }]
+            }],
+            "strength":[{
+                "strengthName":"Inversion",
+                "strengthValue": 4
+            },{
+                "strengthName":"Aversion",
+                "strengthValue": 3.5
+            }],
+            "rangeOfMotion":"180 deg",
+            "differentialDignosis": [{
+                "code": "254-1",
+                "desc":"description for 254-1"
+            },{
+                "code": "265-2",
+                "desc":"description for 265-2"
+            }],
+            "assessment":"This patient cannot survive",
+            "treatmentPlan": ["tp1", "tp2", "tp3"],
+            "medicalEquipment": ["me1", "me2"],
+            "suggestedFollowup":"one month",
+            "workDutyType": "dummyWorkDuty",
+            "workDutyIncludes": ["wd1", "wd2", "wd3", "wd4"],
+            "toThe" : "dummy toThe",
+            "toTheInclude": ["tt1", "tt2", "tt3", "tt4"],
+            "greaterThan" : "dummy greaterThan",
+            "nextVisit": "dummy nextVisit"
+    
+        }
+    },
+
+
+]

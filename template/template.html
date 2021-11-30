@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pdf</title>
+
+    <style>
+        strong {
+            font-size: 1em;
+        }
+
+        img {
+            width: 350px;
+            height: 300px;
+            margin: auto;
+        }
+
+        th,
+        td,
+        tr {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <p><strong>{{lN}}, {{fN}}</strong><br>
+        <strong>DOB:</strong> {{DOB}} <br>
+        <strong>MRN:</strong> {{MRN}} <br>
+        <strong>Date:</strong> {{date}}
+    </p>
+
+    <p><strong>FollowUp:</strong> {{followup}}</br>
+        <strong>Diagnosis:</strong>{{DD}}</br>
+
+        <strong>Work Duty:</strong> {{#each treatments}} {{this}}, {{/each}} <br>
+    <p>{{workDType}} - {{workDIncludes}} to the {{toThe}} {{toTheInclude}} greater than {{grtrThan}} until next
+        visit on {{nextVisit}}</p>
+    </p>
+    <!-- <h3>Medications Prescribed: {medications}</h3> <br /><br /> -->
+
+    <div class="blue">
+        <p><strong>Cheif Complaint:</strong> {{problemAreas}}</p>
+        <!-- <strong>History Of Presenting Illness</strong><br> -->
+        <p>
+            {{name}} is a very pleasant {{age}} year old {{gender}} who presents with the complaint of {{
+            problems}}.
+            {{pronoun}}, states the symptoms have been present since {{onset}}, at {{intensity}} level intensity.
+            {{pronoun}} admits to {{injury}}. {{pronoun}} states symptoms are worse with {{aggrevatingFactors}} and get
+            better with {{alleviatingFactors}}. <br><br>
+            <strong>{{name}} has received treatment for this issue in the past including:</strong>
+            {{newMedications}}.
+            <br>
+            {{symtompsRadiate}}.
+        </p>
+
+
+        <!-- <p>{{name}} has received treatment for this issue in the past: <strong>{{isPastTreatment}}.</strong> <br> 
+            <strong>Past treatment (if any) includes:</strong> {{#each pastTreatments}}{{this}}, {{/each}}</p>
+         <p>{{pastTreatmentString}}</p>  -->
+        <p>{{pronoun}} has taken the following <strong>medications</strong> to help with this condition: {{medications}}
+        </p>
+        <ol>
+            {{#each medications}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ol>
+        <p><strong>Allergies:</strong> {{allergies}}</p>
+        <p><strong>Past Medical History:</strong> </p>
+        <ol>
+            {{#each PMH}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ol>
+
+        <p><strong>Past Surgical History:</strong></p>
+        <!-- <ul>
+            {{#each PSH}}
+            <img src={{this.url}} alt="">
+            {{/each}}
+        </ul> -->
+
+        <p><strong>Family History:</strong><br>
+            <strong>Mother's Conditions:</strong> {{mMC}}</br>
+            <strong>Fathers's Conditions:</strong> {{fMC}}</br>
+            <strong>Grand Parents Conditions:</strong> {{gPMC}}</br>
+            <strong>Siblings Conditions:</strong> {{sMC}}
+        </p>
+        <p><strong>Social History:</strong><br>
+            <strong>Martial Status:</strong> {{maritalStatus}}</br>
+            <strong>Smokes:</strong> {{smokes.doesSmoke}}</br>
+            <strong>Drinks:</strong> {{drinks.doesDrink}}</br>
+        </p>
+        <p><strong>Review of Systems:</strong><br>
+            <strong>General:</strong> {{rosGeneral}}</br>
+            <strong>Neurological:</strong>{{rosNeuro}}</br>
+            <strong>Skin:</strong> {{rosSkin}}</br>
+            <strong>Hemotologic:</strong> {{rosHemotologic}}</br>
+            <strong>Musculoskeletal:</strong> {{rosMusculoskeletal}}</br>
+            <strong>Endocrine:</strong> {{rosEndocrine}}</br>
+            <strong>Psychiatric:</strong> {{rosPsychiatric}}</br>
+        </p>
+        <p>
+            <strong>Physical Examination: </strong>
+            {{name}} is an awake and oriented male that apprears their stated age.
+            {{pronoun}} have a pleasant demenaor, {{pronoun}} is able to follow instructions.
+            {{pronoun}} is in no acute distress. <br /> <br />
+
+            <!-- {{#if problemArray}}
+        <p1><strong>Problems: </strong><br />
+            <ul>
+                {{#each problemArray}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </p1>
+        {{else}}
+        <p>No Affected Problems Found</p>
+        {{/if}} <br /> -->
+
+
+            <p1><strong>The Patient has tenderness to palpation at: </strong>
+                <ul style="margin-bottom:0; ">
+                    {{#each handFootLandMarks}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+                <ul style="margin-top:0; ">
+                    {{#each generalBodyParts}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </p1>
+            <p1><strong>Skin: </strong>
+                <ul>
+                    {{#each skin}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </p1>
+
+
+
+        </p>
+
+    </div>
+
+    <div class="red">
+
+        <!-- <p>
+            {{#if generalBodyParts}}
+            <p1><strong>Skin: </strong><br />
+                <ul>
+                    {{#each generalBodyParts}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </p1>
+            {{else}}
+        <h1>No Affected Body Parts Found</h1>
+        {{/if}}
+        </p> -->
+        <p><strong>Range of motion: </strong>{{range}}</p>
+        <br />
+        <br />
+        <strong>Hand Strength: </strong><br /><br />
+        <table style="text-align: left; border: 1px solid black; width: 40%;">
+            <tr>
+                <th style="border: 1px solid black; border-collapse: collapse;">Left Strength</th>
+                <th style="border: 1px solid black; border-collapse: collapse;">Name</th>
+                <th style="border: 1px solid black; border-collapse: collapse;">Right Strength</th>
+            </tr>
+            {{#each strength}}
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;">{{this.left}}</td>
+                <td style="border: 1px solid black; border-collapse: collapse;">{{this.strengthName}}</td>
+                <td style="border: 1px solid black; border-collapse: collapse;">{{this.right}}</td>
+            </tr>
+            {{/each}}
+        </table>
+        <!-- <p>The patient has tenderness to palpation at: </p><ul>{{#each physicalExam}} <li> {{this}} </li> {{/each}}</ul> -->
+        <p>The patient has a positive: </p>
+        <ul>
+            {{#each ST}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <p>The patient has a negative: </p>
+        <ul>
+            {{#each negativeST}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+
+    </div>
+
+    <div class="green">
+
+        <strong>Assessment:</strong>
+        <p>{{name}} is a {{age}} year old {{gender}} with: {{DD}}</p>
+        <ol>{{#each DD}} <li>{{this.desc}}</li> {{/each}}</ol>
+        <p><strong>Plan: </strong>{{name}} presents signs and symtomps consistent with: {{DD}} <br> {{#each DD}}
+            {{this.desc}},
+            {{/each}}</p>
+        <p>Diagnosis, diagnostic studies, and treatment plans were reviewed with the patient at today’s visit.<br>
+            Treatment plan includes: </p>
+        <ul>{{#each treatmentPlan}}<li>{{this}}</li>{{/each}}</ul>
+        <p>The patient will follow up in {{followup}} </p>
+    </div>
+    <br> <br>
+    <div>
+        <strong>Work Duty:</strong>
+        <p>{{workDType}} - {{workDIncludes}} to the {{toThe}} {{toTheInclude}} greater than {{grtrThan}} until next
+            visit on {{nextVisit}}</p>
+    </div>
+
+</body>
+<!-- <script>
+ let test = document.querySelector('#test1');
+ for (let i = 0; i < array.length; i++) {
+     const element = array[i];
+     
+ }
+</script> -->
+
+</html>

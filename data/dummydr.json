@@ -1,0 +1,26 @@
+[
+    {
+    "name": "Dr Ali",
+    "email": "ali@gmail.com",
+    "phone":"051-523-6410",
+    "emergencyContact":"051-985-6321",
+    "password":"dummyPass",
+    "homeAddress":"this is where I live"
+},
+{
+    "name": "Dr Mustafa",
+    "email": "mustafa@gmail.com",
+    "phone":"051-222-6410",
+    "emergencyContact":"051-333-6321",
+    "password":"pass999",
+    "homeAddress":"this is where Mustafa lives"
+},
+{
+    "name": "Dr Hamza",
+    "email": "hamza@gmail.com",
+    "phone":"051-523-1234",
+    "emergencyContact":"051-985-4321",
+    "password":"dummyPass",
+    "homeAddress":"this is where I live"
+}
+]

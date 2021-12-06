@@ -471,6 +471,24 @@ const getMedicalHistory = (medicalConditions) => {
   }
   return finalMedicalConditions
 }
+const getGeneralExam = (generalExam) => {
+  const finalGeneralExam = {
+    "whoAppears": generalExam.whoAppears[0],
+    "has": generalExam.has[0],
+    "andIs": generalExam.andIs[0]
+  }
+  console.log(generalExam.patientIs[0][0])
+  if (generalExam.patientIs[0][0].toUpperCase() === 'a'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'e'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'i'.toUpperCase()
+    || generalExam.patientIs[0][0].toUpperCase() === 'o'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'u'.toUpperCase()) {
+    finalGeneralExam.patientIs = `an ${getProblemAreas(generalExam.patientIs)}`
+  }
+  else {
+    finalGeneralExam.patientIs = `a ${getProblemAreas(generalExam.patientIs)}`
+  }
+  console.log(finalGeneralExam)
+  return finalGeneralExam
+}
+
 exports.generateReport = async (req, res, next) => {
   try {
     const problem = await Problem.findOne({ _id: req.params.pID }).lean();
@@ -569,6 +587,7 @@ exports.generateReport = async (req, res, next) => {
         newMedications: getProblemAreas(problem.currentIssueMedications.newMedications),
         medications: medicationsName.join(),
         problemAreas: getProblemAreas(problem.fullBodyCoordinates),
+        generalExam: getGeneralExam(problem.dignosis.generalExam),
         skin: problem.fullBodyCoordinates,
         rosGeneral: patient.reviewSystem.general.join(),
         rosNeuro: patient.reviewSystem.neurologic.join(),

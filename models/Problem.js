@@ -184,6 +184,14 @@ const hpiProblemSchema = new mongoose.Schema({
 
             },
         },
+        generalExam:{
+            patientIs : [String],
+            whoAppears : [String],
+            has : [String],
+            andIs : [String]
+            
+        },
+        skin:[String],
         physicalExam: [
             {
                 name: String,

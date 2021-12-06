@@ -12,6 +12,7 @@ const colors = require('colors');
 const fileupload = require('express-fileupload');
 const errorHandler = require('./middleware/error');
 const uuid = require('uuid');
+const http = require('http');
 
 
 
@@ -23,6 +24,9 @@ dotenv.config({ path: './config/config.env' });
 connectDb();
 
 const app = express();
+const chatServer = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(chatServer);
 //Data sanitization against NoSQL query injection
 app.use(mongoSanitizer());
 
@@ -47,6 +51,7 @@ const doctors = require('./routes/doctors');
 const problems = require('./routes/problem');
 const appointments = require('./routes/appointments');
 const test = require('./routes/testroutes');
+const conversation = require('./routes/conversations')
 
 
 
@@ -71,6 +76,7 @@ app.use('/api/v1/doctors', doctors);
 app.use('/api/v1/problems', problems);
 app.use('/api/v1/appointments', appointments);
 app.use('/api/test', test);
+app.use('/api/v1/conversation', conversation)
 
 
 app.use(errorHandler)
@@ -78,7 +84,7 @@ app.use(errorHandler)
 const PORT = process.env.PORT || 5000;
 
 
-const server = app.listen(PORT,
+const server = chatServer.listen(PORT,
     console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`.black));
 
 // Handle unhandled promise rejection

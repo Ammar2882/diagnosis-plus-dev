@@ -239,7 +239,21 @@ const user = new mongoose.Schema({
         required: true,
         default: 'None'
     },
-    reviewSystem: reviewOfSystemsSchema
+    reviewSystem: reviewOfSystemsSchema,
+    labs: [
+        {
+            doctorId : String,
+            patientId:String,
+            name: String,
+            description: String,
+            date: Date,
+            labPhoto: {
+                url: String,
+                public_id: String
+            },
+
+        }
+    ]
 
 });
 

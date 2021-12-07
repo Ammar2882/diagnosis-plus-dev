@@ -283,27 +283,27 @@ exports.registerUser = async (req, res, next) => {
 
     });
 
-    //--- if (!req.files) {
-    //   return next(new ErrorResponse(`Please upload a file`, 404));
-    //--- }
-
-    // ImageDataUploadFunction(req, patient);
-    let currMedArr = [];
-    const medNameArr = JSON.parse(body.currentMedicationsName);
-    const medDoseArr = JSON.parse(body.currentMedicationsDose);
-    const medFreqArr = JSON.parse(body.currentMedicationsFrequency);
-
-    for (let i = 0; i < medNameArr.length; i++) {
-      const medObj = {
-        name: medNameArr[i],
-        dose: medDoseArr[i],
-        frequency: medFreqArr[i]
-      }
-
-      currMedArr.push(medObj);
+    if (!req.files) {
+      return next(new ErrorResponse(`Please upload a file`, 404));
     }
 
-    patient.currentMedications = currMedArr;
+    // ImageDataUploadFunction(req, patient);
+    // --- let currMedArr = [];
+    // const medNameArr = JSON.parse(body.currentMedicationsName);
+    // const medDoseArr = JSON.parse(body.currentMedicationsDose);
+    // const medFreqArr = JSON.parse(body.currentMedicationsFrequency);
+
+    // for (let i = 0; i < medNameArr.length; i++) {
+    //   const medObj = {
+    //     name: medNameArr[i],
+    //     dose: medDoseArr[i],
+    //     frequency: medFreqArr[i]
+    //   }
+
+    //   currMedArr.push(medObj);
+    // }
+
+    // patient.currentMedications = currMedArr; ---
 
 
     //make sure the image is a photo

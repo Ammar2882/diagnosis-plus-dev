@@ -52,6 +52,7 @@ const problems = require('./routes/problem');
 const appointments = require('./routes/appointments');
 const test = require('./routes/testroutes');
 const conversation = require('./routes/conversations')
+const lab = require('./routes/labs')
 
 
 
@@ -76,7 +77,8 @@ app.use('/api/v1/doctors', doctors);
 app.use('/api/v1/problems', problems);
 app.use('/api/v1/appointments', appointments);
 app.use('/api/test', test);
-app.use('/api/v1/conversation', conversation)
+app.use('/api/v1/conversations', conversation)
+app.use('/api/v1/labs', lab)
 
 
 app.use(errorHandler)

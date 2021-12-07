@@ -1,6 +1,7 @@
 const Problem = require('../models/Problem');
 const Patient = require('../models/Patient');
 const ErrorResponse = require('../utils/errorResponse');
+const { getPatientNames } = require('../helpers/helpers')
 
 exports.getAllProblems = async (req, res, next) => {
     try {
@@ -13,6 +14,35 @@ exports.getAllProblems = async (req, res, next) => {
         } else {
             res.status(200).json({
                 success: true, data: problems
+            });
+        }
+    } catch (err) {
+        res.status(201).json({ success: false, message: err.message })
+    }
+}
+
+exports.getDocProblems = async (req, res, next) => {
+    try {
+        console.log("getting doctor specific problems")
+        const userIds = await Problem.find({ 'doctorId': req.user.data[1] }).distinct('patientID');
+
+        if (userIds.length === 0) {
+            res.status(200).json({
+                success: true,
+                data: "no previous problems found"
+            });
+        } else {
+            const resProblems = []
+            for (i = 0; i < userIds.length; i++) {
+                const NAMEpatient = await getPatientNames(userIds)
+                resProblems.push({
+                    patientId: userIds[i],
+                    patientName: NAMEpatient
+                }
+                )
+            }
+            res.status(200).json({
+                success: true, data: resProblems
             });
         }
     } catch (err) {

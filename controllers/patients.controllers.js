@@ -220,7 +220,7 @@ exports.getPatientLabs = async (req, res) => {
       "error": e
     })
   }
-})
+}
 
 exports.updatePatient = async (req, res) => {
   console.log("I am In Update Patient Route")

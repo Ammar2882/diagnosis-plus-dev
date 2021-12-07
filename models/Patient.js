@@ -222,7 +222,10 @@ const user = new mongoose.Schema({
     },
     insurance: insuranceSchema,
     emergencyContact: emergencyContactSchema,
-    medicalConditions: [String],
+    medicalConditions: [{
+        condition: String,
+        value: String
+    }],
     surgicalHistory: [surgicalHistorySchema],
     familyHistory: familyHistorySchema,
     socialHistory: socialHistorySchema,
@@ -230,7 +233,8 @@ const user = new mongoose.Schema({
         type: [{
             name: String,
             dose: String,
-            frequency: String
+            frequency: String,
+            frequencyasneeded: String
         }],
         required: true,
     },
@@ -242,8 +246,8 @@ const user = new mongoose.Schema({
     reviewSystem: reviewOfSystemsSchema,
     labs: [
         {
-            doctorId : String,
-            patientId:String,
+            doctorId: String,
+            patientId: String,
             name: String,
             description: String,
             date: Date,

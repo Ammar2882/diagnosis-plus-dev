@@ -36,6 +36,7 @@ exports.getDocProblems = async (req, res, next) => {
             for (i = 0; i < userIds.length; i++) {
                 const NAMEpatient = await getPatientNames(userIds)
                 resProblems.push({
+                    doctorId: req.user.data[1],
                     patientId: userIds[i],
                     patientName: NAMEpatient
                 }

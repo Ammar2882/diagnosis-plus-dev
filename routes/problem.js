@@ -12,6 +12,6 @@ const router = express.Router();
 router.get('/', checkAuth, getProblems);
 router.post('/', checkAuth, setProblems);
 router.get('/all', getAllProblems)
-router.get('/docproblems', checkAuth, getDocProblems)
+router.get('/docpatients', checkAuth, getDocProblems)
 
 module.exports = router;

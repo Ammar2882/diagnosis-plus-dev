@@ -1,6 +1,8 @@
 const express = require('express');
 const checkAuth = require('../middleware/check-auth');
 const { getPatient,
+    updatePatientLabs,
+    getPatientLabs,
     updatePatientInsurance,
     getPatients,
     createPatients,
@@ -28,18 +30,23 @@ const { getPatient,
 const router = express.Router();
 
 
-router.get('/getAll', checkAuth, getPatients);
+
+
 // .post(createPatients)
 router.post('/register', registerUser);
 router.post('/login', loginUser)
+
 
 router.post('/test', testUser);
 
 router.get('/getPatient', checkAuth, getPatient);
 router.get('/getPatientById/:id', checkAuth, getPatientById);
+router.get('/getPatientLabs', checkAuth, getPatientLabs);
+router.get('/getAll', checkAuth, getPatients);
 
 router.patch('/updatePatient', checkAuth, updatePatient);
 router.patch('/updatePatientInsurance', checkAuth, updatePatientInsurance);
+router.patch('/updatePatientLabs', checkAuth, updatePatientLabs);
 //router.put('/:id/photo', patientPhotoUpload);
 router.delete('/deletePatient', checkAuth, deletePatient);
 

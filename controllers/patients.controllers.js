@@ -327,7 +327,7 @@ exports.registerUser = async (req, res, next) => {
       },
       "emergencyContact.name": body.name,
       "emergencyContact.phoneNumber": body.phoneNumber,
-      medicalConditions: JSON.parse(body.medicalConditions),
+      //medicalConditions: JSON.parse(body.medicalConditions),
       surgicalHistory: surgHistArr,
       "familyHistory.motherMConditions": JSON.parse(body.motherMConditions),
       "familyHistory.fatherMConditions": JSON.parse(body.fatherMConditions),

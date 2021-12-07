@@ -152,6 +152,76 @@ exports.updatePatientInsurance = async (req, res, next) => {
 
 }
 
+
+
+exports.updatePatientLabs = async (req, res, next) => {
+  console.log("in update labs")
+  console.log(req.body)
+  console.log(req.files)
+  try {
+    const p = await Patient.findOne({ _id: req.body.patientId })
+    if (!p) {
+      return res.status(404).json({
+        "message": "Patient not found"
+      })
+    }
+    else {
+      var toBeAdded = {
+        patientId: req.body.patientId,
+        doctorId: req.body.doctorId,
+        name: req.body.name,
+        description: req.body.description,
+        Photos: [{
+          url: '',
+          public_id: ''
+        }]
+      }
+      if (req.files) {
+        for (i = 0; i < req.files.length; i++) {
+          console.log("checking for photos")
+          const urlId = await uploadImage(req.files[i].frontPhoto)
+          toBeAdded.Photos[i].url = urlId.url
+          toBeAdded.Photos[i].public_id = urlId.public_id
+        }
+      }
+    }
+    const updatedPatient = await Patient.findOneAndUpdate({ _id: req.body.patientId }, { labs: toBeAdded }, { new: true, })
+    if (!updatedPatient) {
+      return res.status(400).json({
+        success: false,
+        data: null
+      })
+    }
+    else {
+      return res.status(200).json({
+        success: true,
+        data: updatedPatient
+      })
+    }
+  }
+
+  catch (err) {
+    next(new ErrorResponse(err.message, 500))
+  }
+}
+
+
+exports.getPatientLabs = async (req, res) => {
+  try {
+    const p = await Patient.find({ _id: req.body.patientId })
+    res.status(400).json({
+      "success": true,
+      "data": p.labs
+    })
+  }
+  catch (e) {
+    res.status(400).json({
+      "success": false,
+      "error": e
+    })
+  }
+})
+
 exports.updatePatient = async (req, res) => {
   console.log("I am In Update Patient Route")
   console.log(req.body)

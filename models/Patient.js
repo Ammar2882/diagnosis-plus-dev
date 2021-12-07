@@ -251,10 +251,10 @@ const user = new mongoose.Schema({
             name: String,
             description: String,
             date: Date,
-            labPhoto: {
+            Photos: [{
                 url: String,
                 public_id: String
-            },
+            }],
 
         }
     ]

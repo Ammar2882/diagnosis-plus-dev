@@ -255,6 +255,10 @@ const user = new mongoose.Schema({
                 url: String,
                 public_id: String
             }],
+            pdf: {
+                url: '',
+                public_id: ''
+            }
 
         }
     ]

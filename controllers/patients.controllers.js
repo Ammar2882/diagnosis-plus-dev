@@ -155,11 +155,9 @@ exports.updatePatientInsurance = async (req, res, next) => {
 
 exports.updatePatientLabs = async (req, res, next) => {
   console.log("in update labs")
-  console.log(req.body)
+  console.log(req.body.name)
+  console.log(req.body.description)
   console.log(req.files)
-  const newBody = JSON.parse(req.body)
-  console.log(newBody)
-
   try {
     const p = await Patient.findOne({ _id: req.body.patientId })
     if (!p) {
@@ -169,10 +167,10 @@ exports.updatePatientLabs = async (req, res, next) => {
     }
     else {
       var toBeAdded = {
-        patientId: newBody.patientId,
-        doctorId: newBody.doctorId,
-        name: newBody.name,
-        description: newBody.description,
+        patientId: req.body.patientId,
+        doctorId: req.body.doctorId,
+        name: req.body.name,
+        description: req.body.description,
         photos: [],
         pdf: {
           url: '',

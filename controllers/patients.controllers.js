@@ -171,7 +171,7 @@ exports.updatePatientLabs = async (req, res, next) => {
         doctorId: req.body.doctorId,
         name: req.body.name,
         description: req.body.description,
-        Photos: [{
+        photos: [{
           url: '',
           public_id: ''
         }]
@@ -179,9 +179,9 @@ exports.updatePatientLabs = async (req, res, next) => {
       if (req.files) {
         for (i = 0; i < req.files.length; i++) {
           console.log("checking for photos")
-          const urlId = await uploadImage(req.files[i].frontPhoto)
-          toBeAdded.Photos[i].url = urlId.url
-          toBeAdded.Photos[i].public_id = urlId.public_id
+          const urlId = await uploadImage(req.files[i])
+          toBeAdded.photos[i].url = urlId.url
+          toBeAdded.photos[i].public_id = urlId.public_id
         }
       }
     }
@@ -207,9 +207,11 @@ exports.updatePatientLabs = async (req, res, next) => {
 
 
 exports.getPatientLabs = async (req, res) => {
+  console.log("getting patient labs")
   try {
-    const p = await Patient.find({ _id: req.body.patientId })
-    res.status(400).json({
+    const p = await Patient.findOne({ _id: req.body.patientId })
+    console.log(p)
+    res.status(200).json({
       "success": true,
       "data": p.labs
     })

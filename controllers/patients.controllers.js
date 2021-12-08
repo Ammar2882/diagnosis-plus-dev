@@ -11,7 +11,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const cloudinary = require("cloudinary");
 const fs = require('fs');
 const mongoose = require('mongoose');
-const { destroyImage, uploadImage } = require('../helpers/helpers')
+const { destroyImage, uploadImage, uploadPdf } = require('../helpers/helpers')
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -95,15 +95,14 @@ exports.updatePatientInsurance = async (req, res, next) => {
           if (p.insurance.frontPhoto.url) {
             console.log('i entered in front delete photo')
             destroyImage(`${p.insurance.frontPhoto.public_id}`)
-            const urlId = await uploadImage(req.files.frontPhoto)
+            const urlId = await uploadImage(req.files.frontPhoto, next)
             toBeAdded.frontPhoto.url = urlId.url
             toBeAdded.frontPhoto.public_id = urlId.public_id
 
           }
           else {
             console.log('i never in front delete photo')
-            const urlId = await uploadImage(req.files.frontPhoto)
-            console.log(urlId)
+            const urlId = await uploadImage(req.files.frontPhoto, next)
             toBeAdded.frontPhoto.url = urlId.url
             toBeAdded.frontPhoto.public_id = urlId.public_id
           }
@@ -171,17 +170,39 @@ exports.updatePatientLabs = async (req, res, next) => {
         doctorId: req.body.doctorId,
         name: req.body.name,
         description: req.body.description,
-        photos: [{
+        photos: [],
+        pdf: {
           url: '',
           public_id: ''
-        }]
+        }
       }
       if (req.files) {
-        for (i = 0; i < req.files.length; i++) {
-          console.log("checking for photos")
-          const urlId = await uploadImage(req.files[i])
-          toBeAdded.photos[i].url = urlId.url
-          toBeAdded.photos[i].public_id = urlId.public_id
+        if (req.files.photos) {
+          if (Array.isArray(req.files.photos)) {
+            for (i = 0; i < req.files.photos.length; i++) {
+              console.log("checking for photos")
+              const urlId = await uploadImage(req.files.photos[i], next)
+              console.log(urlId)
+              var setPhotos = {
+                "url": urlId.url,
+                "public_id": urlId.public_id
+              }
+              toBeAdded.photos[i] = setPhotos
+            }
+          }
+          else {
+            const urlId = await uploadImage(req.files.photos, next)
+            var setPhotos = {
+              "url": urlId.url,
+              "public_id": urlId.public_id
+            }
+            toBeAdded.photos[i] = setPhotos
+          }
+        }
+        if (req.files.pdf) {
+          const urlId = await uploadPdf(req.files.pdf, next)
+          toBeAdded.pdf.url = urlId.url
+          toBeAdded.pdf.public_id = urlId.public_id
         }
       }
     }

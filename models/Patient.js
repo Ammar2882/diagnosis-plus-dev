@@ -251,7 +251,7 @@ const user = new mongoose.Schema({
             name: String,
             description: String,
             date: Date,
-            Photos: [{
+            photos: [{
                 url: String,
                 public_id: String
             }],

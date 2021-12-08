@@ -5,7 +5,7 @@ const Lab = require("../models/Lab");
 router.get('/', async (req, res) => {
     try {
         const labs = await Lab.find({})
-        res.status(400).json({
+        res.status(200).json({
             "success": true,
             "data": labs
         })
@@ -24,7 +24,7 @@ router.post('/setlab', async (req, res) => {
             labs: req.body.labs
         })
         const saved = await labs.save()
-        res.status(400).json({
+        res.status(200).json({
             "success": true,
             "data": saved
         })

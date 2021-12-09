@@ -156,6 +156,8 @@ exports.updatePatientInsurance = async (req, res, next) => {
 exports.updatePatientLabs = async (req, res, next) => {
   console.log("in update labs")
   console.log(req.body)
+  const objectLength = Object.keys(req.files).length
+  console.log(objectLength)
   console.log(req.files)
   try {
     const p = await Patient.findOne({ _id: req.body.patientId })
@@ -197,7 +199,7 @@ exports.updatePatientLabs = async (req, res, next) => {
               "url": urlId.url,
               "public_id": urlId.public_id
             }
-            toBeAdded.photos[i] = setPhotos
+            toBeAdded.photos = setPhotos
           }
         }
         if (req.files.pdf) {
@@ -206,20 +208,21 @@ exports.updatePatientLabs = async (req, res, next) => {
           toBeAdded.pdf.public_id = urlId.public_id
         }
       }
+      const updatedPatient = await Patient.findOneAndUpdate({ _id: req.body.patientId }, { $push: { labs: toBeAdded } }, { new: true, })
+      if (!updatedPatient) {
+        return res.status(400).json({
+          success: false,
+          data: null
+        })
+      }
+      else {
+        return res.status(200).json({
+          success: true,
+          data: updatedPatient
+        })
+      }
     }
-    const updatedPatient = await Patient.findOneAndUpdate({ _id: req.body.patientId }, { labs: toBeAdded }, { new: true, })
-    if (!updatedPatient) {
-      return res.status(400).json({
-        success: false,
-        data: null
-      })
-    }
-    else {
-      return res.status(200).json({
-        success: true,
-        data: updatedPatient
-      })
-    }
+
   }
 
   catch (err) {

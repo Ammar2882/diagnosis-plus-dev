@@ -155,8 +155,7 @@ exports.updatePatientInsurance = async (req, res, next) => {
 
 exports.updatePatientLabs = async (req, res, next) => {
   console.log("in update labs")
-  console.log(req.body.name)
-  console.log(req.body.description)
+  console.log(req.body)
   console.log(req.files)
   try {
     const p = await Patient.findOne({ _id: req.body.patientId })
@@ -170,6 +169,7 @@ exports.updatePatientLabs = async (req, res, next) => {
         patientId: req.body.patientId,
         doctorId: req.body.doctorId,
         name: req.body.name,
+        date: req.body.date,
         description: req.body.description,
         photos: [],
         pdf: {

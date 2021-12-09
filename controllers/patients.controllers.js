@@ -156,8 +156,6 @@ exports.updatePatientInsurance = async (req, res, next) => {
 exports.updatePatientLabs = async (req, res, next) => {
   console.log("in update labs")
   console.log(req.body)
-  const objectLength = Object.keys(req.files).length
-  console.log(objectLength)
   console.log(req.files)
   try {
     const p = await Patient.findOne({ _id: req.body.patientId })
@@ -174,10 +172,7 @@ exports.updatePatientLabs = async (req, res, next) => {
         date: req.body.date,
         description: req.body.description,
         photos: [],
-        pdf: {
-          url: '',
-          public_id: ''
-        }
+        pdf: []
       }
       if (req.files) {
         if (req.files.photos) {
@@ -203,10 +198,32 @@ exports.updatePatientLabs = async (req, res, next) => {
           }
         }
         if (req.files.pdf) {
-          const urlId = await uploadPdf(req.files.pdf, next)
-          toBeAdded.pdf.url = urlId.url
-          toBeAdded.pdf.public_id = urlId.public_id
+          if (Array.isArray(req.files.pdf)) {
+            for (i = 0; i < req.files.pdf.length; i++) {
+              console.log("checking for pdfs")
+              const urlId = await uploadPdf(req.files.pdf[i], next)
+              console.log(urlId)
+              var setPdf = {
+                "url": urlId.url,
+                "public_id": urlId.public_id
+              }
+              toBeAdded.pdf[i] = setPdf
+            }
+          }
+          else {
+            const urlId = await uploadPdf(req.files.pdf, next)
+            var setPdf = {
+              "url": urlId.url,
+              "public_id": urlId.public_id
+            }
+            toBeAdded.pdf = setPdf
+          }
         }
+        // if (req.files.pdf) {
+        //   const urlId = await uploadPdf(req.files.pdf, next)
+        //   toBeAdded.pdf.url = urlId.url
+        //   toBeAdded.pdf.public_id = urlId.public_id
+        // }
       }
       const updatedPatient = await Patient.findOneAndUpdate({ _id: req.body.patientId }, { $push: { labs: toBeAdded } }, { new: true, })
       if (!updatedPatient) {

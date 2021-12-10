@@ -87,7 +87,7 @@ const PORT = process.env.PORT || 5000;
 
 
 const server = chatServer.listen(PORT,
-    console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`.black));
+    console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`.blue));
 
 // Handle unhandled promise rejection
 process.on('unhandledRejection', (err, promise) => {

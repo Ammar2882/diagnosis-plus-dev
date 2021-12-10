@@ -958,7 +958,7 @@ exports.getOtherMeds = async (req, res, next) => {
 
 exports.getPatientById = async (req, res, next) => {
   try {
-    const patient = await Patient.findById(req.params.id);
+    const patient = await Patient.findOne({ _id: req.params.id }, { labs: 0, __v: 0 });
 
     if (!patient) {
       return next(new ErrorResponse(`Patient not found with id of ${req.params.id}`, 404));

@@ -252,16 +252,25 @@ exports.getPatientLabs = async (req, res) => {
   console.log("getting patient labs")
   try {
     const p = await Patient.findOne({ _id: req.body.patientId })
-    console.log(p)
-    res.status(200).json({
-      "success": true,
-      "data": p.labs
-    })
+    console.log("**************", p.labs)
+    if (p.labs.length <= 0) {
+      return res.status(200).json({
+        success: true,
+        data: "No Labs Found"
+      })
+    }
+    else {
+      return res.status(200).json({
+        success: true,
+        data: p.labs
+      })
+    }
+
   }
   catch (e) {
-    res.status(400).json({
-      "success": false,
-      "error": e
+    return res.status(400).json({
+      success: false,
+      error: e
     })
   }
 }
@@ -371,7 +380,7 @@ exports.registerUser = async (req, res, next) => {
       },
       "emergencyContact.name": body.name,
       "emergencyContact.phoneNumber": body.phoneNumber,
-      //medicalConditions: JSON.parse(body.medicalConditions),
+      medicalConditions: JSON.parse(body.medicalConditions),
       surgicalHistory: surgHistArr,
       "familyHistory.motherMConditions": JSON.parse(body.motherMConditions),
       "familyHistory.fatherMConditions": JSON.parse(body.fatherMConditions),

@@ -238,11 +238,12 @@ const user = new mongoose.Schema({
         }],
         required: true,
     },
-    allergies: {
-        type: [String],
-        required: true,
-        default: 'None'
-    },
+    allergies: [
+        {
+            name: String,
+            reaction: String
+        }
+    ],
     reviewSystem: reviewOfSystemsSchema,
     labs: [
         {
@@ -250,7 +251,7 @@ const user = new mongoose.Schema({
             patientId: String,
             name: String,
             description: String,
-            date: Date,
+            date: String,
             photos: [{
                 url: String,
                 public_id: String

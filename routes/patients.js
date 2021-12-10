@@ -35,13 +35,13 @@ const router = express.Router();
 // .post(createPatients)
 router.post('/register', registerUser);
 router.post('/login', loginUser)
+router.post('/getPatientLabs', checkAuth, getPatientLabs);
 
 
 router.post('/test', testUser);
 
 router.get('/getPatient', checkAuth, getPatient);
 router.get('/getPatientById/:id', checkAuth, getPatientById);
-router.get('/getPatientLabs', checkAuth, getPatientLabs);
 router.get('/getAll', checkAuth, getPatients);
 
 router.patch('/updatePatient', checkAuth, updatePatient);

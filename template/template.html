@@ -33,18 +33,19 @@
         <strong>Date:</strong> {{date}}
     </p>
 
-    <p><strong>FollowUp:</strong> {{followup}}</br>
-        <strong>Diagnosis:</strong>{{DD}}</br>
+    <p><strong>Follow-up:</strong> {{followup}}</br>
+        <strong>Diagnosis:</strong> {{DD}}</br>
 
-        <strong>Work Duty:</strong> {{#each treatments}} {{this}}, {{/each}} <br>
+        <!-- <strong>Work Duty:</strong> {{#each treatments}} {{this}}, {{/each}} <br> -->
+        <strong>Work Duty:</strong> {{treatments}} <br>
     <p>{{workDType}} - {{workDIncludes}} to the {{toThe}} {{toTheInclude}} greater than {{grtrThan}} until next
         visit on {{nextVisit}}</p>
     </p>
     <!-- <h3>Medications Prescribed: {medications}</h3> <br /><br /> -->
 
     <div class="blue">
-        <p><strong>Cheif Complaint:</strong> {{problemAreas}}</p>
-        <!-- <strong>History Of Presenting Illness</strong><br> -->
+        <p><strong>Chief Complaint:</strong> {{problemAreas}}</p>
+        <strong>History Of Presenting Illness:</strong><br>
         <p>
             {{name}} is a very pleasant {{age}} year old {{gender}} who presents with the complaint of {{
             problems}}.
@@ -68,7 +69,19 @@
             <li>{{this}}</li>
             {{/each}}
         </ol>
-        <p><strong>Allergies:</strong> {{allergies}}</p>
+        <p><strong>Allergies:</strong></p>
+        <table style="text-align: left; border: 1px solid black; width: 40%;">
+            <tr>
+                <th style="border: 1px solid black; border-collapse: collapse;">Name</th>
+                <th style="border: 1px solid black; border-collapse: collapse;">Reaction</th>
+            </tr>
+            {{#each allergies}}
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;">{{this.name}}</td>
+                <td style="border: 1px solid black; border-collapse: collapse;">{{this.reaction}}</td>
+            </tr>
+            {{/each}}
+        </table>
         <p><strong>Past Medical History:</strong> </p>
         <ol>
             {{#each PMH}}
@@ -94,7 +107,7 @@
             <strong>Smokes:</strong> {{smokes.doesSmoke}}</br>
             <strong>Drinks:</strong> {{drinks.doesDrink}}</br>
         </p>
-        <p><strong>Review of Systems:</strong><br>
+        <p><strong>Review of Symptoms:</strong><br>
             <strong>General:</strong> {{rosGeneral}}</br>
             <strong>Neurological:</strong> {{rosNeuro}}</br>
             <strong>Skin:</strong> {{rosSkin}}</br>
@@ -106,7 +119,7 @@
         <p>
             <strong>Physical Examination: </strong>
             {{name}} is {{generalExam.patientIs}} {{gender}} that apprears {{generalExam.whoAppears}}.
-            {{pronoun}} have a {{generalExam.has}}. {{pronoun}} is able to follow instructions.
+            {{pronoun}} have {{generalExam.has}}. {{pronoun}} is able to follow instructions.
             {{pronoun}} is in {{generalExam.andIs}}. <br /> <br />
 
             <!-- {{#if problemArray}}

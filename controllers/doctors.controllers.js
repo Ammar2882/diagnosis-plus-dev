@@ -289,6 +289,7 @@ const getSocial = (sH) => {
 
 
 const getRadiateStr = (condition, pr) => {
+  console.log("condition : " + condition)
   if (condition) {
     return `${pr} admits to the radiation of symptoms`
   } else {
@@ -325,67 +326,6 @@ const getCurrMed = (med) => {
 
   return meds;
 }
-
-// const evaluateMuscleArray = (item, index) => {
-//   const muscleNames = ['CMC Joint', 'Metacarpal', 'MCP Joint', 'Proximal Phalanx', 'PIP Joint', 'IP Joint',
-//     'Middle Phalanx', 'DIP Joint', 'Distal Phalanx', 'A1 Pulley', 'MCP RCL', 'MCP UCL', 'PIP RCL', 'PIP UCL', 'DIP RCL']
-//   var muscles = '';
-//   var newIndex = 0;
-//   if (index === newIndex) {
-//     if (count >= 15) {
-//       count = 0;
-//     }
-//     else {
-//       count = count + 1
-//     }
-//   }
-//   if (item.localeCompare('t') === 0) {
-//     muscles = muscles.concat(`thumb ${muscleNames[count - 1]}`)
-//   }
-//   else if (item.localeCompare('i') === 0) {
-//     muscles = muscles.concat(`index finger ${muscleNames[count - 1]}`)
-//   }
-//   else if (item.localeCompare('m') === 0) {
-//     muscles = muscles.concat(`middle finger ${muscleNames[count - 1]}`)
-//   }
-//   else if (item.localeCompare('r') === 0) {
-//     muscles = muscles.concat(`ring finger ${muscleNames[count - 1]}`)
-//   }
-//   else if (item.localeCompare('s') === 0) {
-//     muscles = muscles.concat(`small finger ${muscleNames[count - 1]}`)
-//   }
-
-//   return muscles;
-
-// }
-// const getPhysicalExam = (physicalExam) => {
-//   var handFootArray = []
-//   var otherBodyPartArray = []
-//   var finalOtherBodyPartArray = []
-//   var handFootCheck = physicalExam.bodyPart
-//   var finalHandFootArray = []
-
-//   for (i = 0; i < handFootCheck.length; i++) {
-//     if ((handFootCheck[i][0] === "left hand" || handFootCheck[i][0] === "right hand" || handFootCheck[i][0] === "left foot" || handFootCheck[i][0] === "right foot")) {
-//       handFootArray.push(handFootCheck[i])
-//     }
-//     else {
-//       otherBodyPartArray.push(handFootCheck[i])
-//     }
-//   }
-//   for (l = 0; l < otherBodyPartArray.length; l++) {
-//     finalOtherBodyPartArray.push(`${otherBodyPartArray[l][0]} at ${otherBodyPartArray[l][1][0]}`)
-//   }
-//   for (j = 0; j < handFootArray.length; j++) {
-//     finalHandFootArray.push(`${handFootArray[j][0]} on ${handFootArray[j][1][0]} at ${getFinger(handFootArray[j][1])}`)
-//   }
-
-//   return [
-//     finalOtherBodyPartArray, finalHandFootArray
-//   ]
-// }
-
-
 const getPhysicalExam = (physicalExam) => {
   var handFootArray = []
   var otherBodyPartArray = []
@@ -400,15 +340,9 @@ const getPhysicalExam = (physicalExam) => {
       otherBodyPartArray.push(physicalExam[s])
     }
   }
-  // for (m = 0; m < handFootArray.length;  m++) {
-  //       finalHandFootArray.push(`${handFootArray[m].jointname} joint of ${handFootArray[m].name} at ${getFinger(handFootArray[m].values)}`)
-  //     }
   finalHandFootArray = handFootArray.map((item) => {
     return `${item.jointname} joint of ${item.name} at ${getFinger(item.values)}`
   })
-  // for (n = 0; n < otherBodyPartArray.length; n++) {
-  //   finalOtherBodyPartArray.push(`${otherBodyPartArray[n].jointname} joint of ${otherBodyPartArray[n].name}`)
-  // }
   finalOtherBodyPartArray = otherBodyPartArray.map((item) => {
     return `${item.jointname} joint of ${item.name}`
   })
@@ -435,28 +369,29 @@ const getFinger = (fingersArray) => {
   return fingers;
 }
 
-const getProblemAreas = (fullBodyCoordinates) => {
-  var bodyCoordinates = ''
+// const getProblemAreas = (fullBodyCoordinates) => {
+//   var bodyCoordinates = ''
 
-  if (fullBodyCoordinates.length > 1) {
-    for (p = fullBodyCoordinates.length - 1; p >= 0; p--) {
-      if (p <= 0) {
-        bodyCoordinates = bodyCoordinates + ` and ${fullBodyCoordinates[p]}`
-      }
-      else {
-        bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[p]}, `
-      }
-    }
-  }
-  else {
-    bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[0]}`
-  }
-  console.log(bodyCoordinates)
-  return bodyCoordinates;
-}
+//   if (fullBodyCoordinates.length > 1) {
+//     for (p = fullBodyCoordinates.length - 1; p >= 0; p--) {
+//       if (p <= 0) {
+//         bodyCoordinates = bodyCoordinates + ` and ${fullBodyCoordinates[p]}`
+//       }
+//       else {
+//         bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[p]}, `
+//       }
+//     }
+//   }
+//   else {
+//     bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[0]}`
+//   }
+//   console.log(bodyCoordinates)
+//   return bodyCoordinates;
+// }
+
+
 
 const getMedicalHistory = (medicalConditions) => {
-  console.log(medicalConditions)
   finalMedicalConditions = []
   for (e = 0; e < medicalConditions.length; e++) {
     if (medicalConditions[e].condition.toLowerCase() === 'cancer') {
@@ -480,14 +415,40 @@ const getGeneralExam = (generalExam) => {
   console.log(generalExam.patientIs[0][0])
   if (generalExam.patientIs[0][0].toUpperCase() === 'a'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'e'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'i'.toUpperCase()
     || generalExam.patientIs[0][0].toUpperCase() === 'o'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'u'.toUpperCase()) {
-    finalGeneralExam.patientIs = `an ${getProblemAreas(generalExam.patientIs)}`
+    finalGeneralExam.patientIs = `an ${getTreatments(generalExam.patientIs)}`
   }
   else {
-    finalGeneralExam.patientIs = `a ${getProblemAreas(generalExam.patientIs)}`
+    finalGeneralExam.patientIs = `a ${getTreatments(generalExam.patientIs)}`
   }
-  console.log(finalGeneralExam)
   return finalGeneralExam
 }
+
+const getTreatments = (fullBodyCoordinates) => {
+  var bodyCoordinates = ''
+
+  if (fullBodyCoordinates.length > 1) {
+    for (p = 0; p <= fullBodyCoordinates.length - 1; p++) {
+      if (p >= fullBodyCoordinates.length - 1) {
+        bodyCoordinates = bodyCoordinates + ` and ${fullBodyCoordinates[p]}`
+      }
+      else {
+        bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[p]}, `
+      }
+    }
+  }
+  else {
+    bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[0]}`
+  }
+  console.log(bodyCoordinates + " : " + bodyCoordinates.length)
+  if (bodyCoordinates == "undefined") {
+    return 'Not added by the patient'
+  }
+  else {
+    return bodyCoordinates;
+  }
+
+}
+
 
 exports.generateReport = async (req, res, next) => {
   try {
@@ -518,10 +479,10 @@ exports.generateReport = async (req, res, next) => {
     const template = fs.readFileSync('./template/template.html', 'utf-8');
     let symptoms_lower = problem.symptoms.map(item => item.toLowerCase());
 
-    let str_aggFactors = problem.aggravatingFactors.join();
+    let str_aggFactors = getTreatments(problem.aggravatingFactors);
     str_aggFactors = str_aggFactors.toLowerCase();
 
-    let str_allFactors = problem.alleviatingFactors.join();
+    let str_allFactors = getTreatments(problem.alleviatingFactors);
     str_allFactors = str_allFactors.toLowerCase();
 
     let medicationsName = getCurrMed(patient.currentMedications);
@@ -531,23 +492,23 @@ exports.generateReport = async (req, res, next) => {
 
     // str_medications = str_medications.toLowerCase();
 
-    let str_allergies = patient.allergies.join();
+    let str_allergies = patient.allergies;
 
     // --- let str_PMH = patient.medicalConditions.join();
 
-    let str_MMC = patient.familyHistory.motherMConditions.join();
+    let str_MMC = getTreatments(patient.familyHistory.motherMConditions);
 
-    let str_FMC = patient.familyHistory.fatherMConditions.join();
+    let str_FMC = getTreatments(patient.familyHistory.fatherMConditions);
 
-    let str_GPMC = patient.familyHistory.grandparentMConditions.join();
+    let str_GPMC = getTreatments(patient.familyHistory.grandparentMConditions);
 
-    let str_SMC = patient.familyHistory.siblingsMConditions.join();
+    let str_SMC = getTreatments(patient.familyHistory.siblingsMConditions);
 
     let arr_DD = getDDStr(problem.dignosis.differentialDignosis);
-    let str_DD = arr_DD.join();
+    let str_DD = getTreatments(arr_DD);
 
-    let strWDIncludes = problem.dignosis.workDutyIncludes.join();
-    let strToTheIncludes = problem.dignosis.toTheInclude.join();
+    let strWDIncludes = getTreatments(problem.dignosis.workDutyIncludes);
+    let strToTheIncludes = getTreatments(problem.dignosis.toTheInclude);
 
     const options = {
       format: 'A4',
@@ -566,11 +527,11 @@ exports.generateReport = async (req, res, next) => {
         date: moment().format('MMMM Do YYYY'),
         followup: problem.dignosis.suggestedFollowup,
         diagnosis: problem.dignosis.assessment,
-        treatments: problem.dignosis.treatmentPlan,
+        treatments: getTreatments(problem.dignosis.treatmentPlan),
         name: `${patient.fname} ${patient.lname}`,
         age: pAge,
         gender: patient.gender,
-        problems: getProblemAreas(problem.symptoms),
+        problems: getTreatments(problem.symptoms),
         pronoun,
         onset: moment(problem.symptomsStarted).format('MMMM Do YYYY'),
         intensity: `${problem.symptomsAtBest} to ${problem.symptomsAtWorst}`,
@@ -584,18 +545,18 @@ exports.generateReport = async (req, res, next) => {
         allergies: str_allergies,
         PMH: getMedicalHistory(patient.medicalConditions),
         PSH: patient.surgicalHistory,
-        newMedications: getProblemAreas(problem.currentIssueMedications.newMedications),
+        newMedications: getTreatments(problem.currentIssueMedications.newMedications),
         medications: medicationsName.join(),
-        problemAreas: getProblemAreas(problem.fullBodyCoordinates),
+        problemAreas: getTreatments(problem.fullBodyCoordinates),
         generalExam: getGeneralExam(problem.dignosis.generalExam),
-        skin: problem.fullBodyCoordinates,
-        rosGeneral: patient.reviewSystem.general.join(),
-        rosNeuro: patient.reviewSystem.neurologic.join(),
-        rosSkin: patient.reviewSystem.skin.join(),
-        rosHemotologic: patient.reviewSystem.hemotologic.join(),
-        rosMusculoskeletal: patient.reviewSystem.musculoskeletal.join(),
-        rosEndocrine: patient.reviewSystem.endocrine.join(),
-        rosPsychiatric: patient.reviewSystem.psychiatric.join(),
+        skin: problem.dignosis.skin,
+        rosGeneral: getTreatments(patient.reviewSystem.general),
+        rosNeuro: getTreatments(patient.reviewSystem.neurologic),
+        rosSkin: getTreatments(patient.reviewSystem.skin),
+        rosHemotologic: getTreatments(patient.reviewSystem.hemotologic),
+        rosMusculoskeletal: getTreatments(patient.reviewSystem.musculoskeletal),
+        rosEndocrine: getTreatments(patient.reviewSystem.endocrine),
+        rosPsychiatric: getTreatments(patient.reviewSystem.psychiatric),
         generalBodyParts: physicalExam[0],
         handFootLandMarks: physicalExam[1],
         DD: str_DD,

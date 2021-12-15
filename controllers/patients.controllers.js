@@ -113,13 +113,13 @@ exports.updatePatientInsurance = async (req, res, next) => {
         if (req.files.backPhoto) {
           if (p.insurance.backPhoto.url) {
             destroyImage(`${p.insurance.backPhoto.public_id}`)
-            const urlId = await uploadImage(req.files.backPhoto)
+            const urlId = await uploadImage(req.files.backPhoto, next)
             toBeAdded.backPhoto.url = urlId.url
             toBeAdded.backPhoto.public_id = urlId.public_id
 
           }
           else {
-            const urlId = await uploadImage(req.files.backPhoto)
+            const urlId = await uploadImage(req.files.backPhoto, next)
             console.log(urlId)
             toBeAdded.backPhoto.url = urlId.url
             toBeAdded.backPhoto.public_id = urlId.public_id
@@ -324,7 +324,7 @@ exports.registerUser = async (req, res, next) => {
   try {
     const body = req.body;
     console.log(body)
-
+    console.log(req.files)
 
     const password = body.password;
 
@@ -394,7 +394,7 @@ exports.registerUser = async (req, res, next) => {
       "socialHistory.maritalStatus": body.maritalStatus,
       "socialHistory.handDominance": body.maritalStatus,
       "socialHistory.occupation": body.maritalStatus,
-      currentMedications: body.currentMedications,
+      currentMedications: JSON.parse(body.currentMedications),
       allergies: JSON.parse(body.allergies),
       "reviewSystem.general": JSON.parse(body.general),
       "reviewSystem.neurologic": JSON.parse(body.neurologic),
@@ -409,6 +409,21 @@ exports.registerUser = async (req, res, next) => {
     if (!req.files) {
       return next(new ErrorResponse(`Please upload a file`, 404));
     }
+
+    if (req.files.frontPhoto) {
+      console.log('i am in frontPhoto upload for signup')
+      const urlId = await uploadImage(req.files.frontPhoto, next)
+      patient.insurance.frontPhoto.url = urlId.url
+      patient.insurance.frontPhoto.public_id = urlId.public_id
+    }
+    if (req.files.backPhoto) {
+      console.log('i am in backPhoto upload for signup')
+      const urlId = await uploadImage(req.files.backPhoto, next)
+      console.log(urlId)
+      patient.insurance.backPhoto.url = urlId.url
+      patient.insurance.backPhoto.public_id = urlId.public_id
+    }
+
 
     // ImageDataUploadFunction(req, patient);
     // --- let currMedArr = [];
@@ -427,68 +442,6 @@ exports.registerUser = async (req, res, next) => {
     // }
 
     // patient.currentMedications = currMedArr; ---
-
-
-    //make sure the image is a photo
-    if (req.files.frontPhoto) {
-      if (!req.files.frontPhoto.mimetype.startsWith('image')) {
-        return next(new ErrorResponse(`Please upload an image file`, 400));
-      }
-
-
-      req.files.frontPhoto.mv(`${process.env.FILE_UPLOAD_PATH}/insurance/${req.files.frontPhoto.name}`, err => {
-        if (err) {
-          console.error(err);
-          return next(new ErrorResponse(`Problem with file upload`, 400)); // next func error response
-        }
-
-        cloudinary.uploader.upload(`${process.env.FILE_UPLOAD_PATH}/insurance/${req.files.frontPhoto.name}`, result => {
-          console.log("front photo after upload" + result.public_id)
-          patient.insurance.frontPhoto.url = result.secure_url;
-          patient.insurance.frontPhoto.public_id = result.public_id;
-
-          console.log(patient.insurance.frontPhoto);
-          // removing the locally uploaded file using fs asynchronously
-          fs.unlink(`${process.env.FILE_UPLOAD_PATH}/insurance/${req.files.frontPhoto.name}`, (err) => {
-            if (err) {
-              console.error(err)
-              return
-            }
-          });
-        });
-
-      });
-    }
-
-
-
-    if (req.files.backPhoto) {
-      if (!req.files.backPhoto.mimetype.startsWith('image')) {
-        return next(new ErrorResponse(`Please upload an image file`, 400));
-      }
-      req.files.backPhoto.mv(`${process.env.FILE_UPLOAD_PATH}/insurance/${req.files.backPhoto.name}`, err => {
-        if (err) {
-          console.error(err);
-          return next(new ErrorResponse(`Problem with file upload`, 400)); // next func error response
-        }
-
-        cloudinary.uploader.upload(`${process.env.FILE_UPLOAD_PATH}/insurance/${req.files.backPhoto.name}`, result => {
-          patient.insurance.backPhoto.url = result.secure_url;
-          patient.insurance.backPhoto.public_id = result.public_id;
-          // removing the locally uploaded file using fs asynchronously
-          fs.unlink(`${process.env.FILE_UPLOAD_PATH}/insurance/${req.files.backPhoto.name}`, (err) => {
-            if (err) {
-              console.error(err)
-              return
-            }
-          });
-
-
-        });
-      });
-    }
-
-
 
     setTimeout(async () => {
       console.log("after setting fields " + patient)

@@ -545,7 +545,7 @@ exports.generateReport = async (req, res, next) => {
         allergies: str_allergies,
         PMH: getMedicalHistory(patient.medicalConditions),
         PSH: patient.surgicalHistory,
-        newMedications: getTreatments(problem.currentIssueMedications.newMedications),
+        newMedications: problem.currentMedications,//after med changes
         medications: medicationsName.join(),
         problemAreas: getTreatments(problem.fullBodyCoordinates),
         generalExam: getGeneralExam(problem.dignosis.generalExam),

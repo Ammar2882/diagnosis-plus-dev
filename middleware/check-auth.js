@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization;
         if (!token) {
-            res.status(401).json({
+            return res.status(401).json({
                 success: false,
                 "message": "Token not found"
             })
@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
         req.user = decoded;
         next();
     } catch (err) {
-        res.status(401).json({
+        return res.status(401).json({
             success: false,
             "message": err.message
         })

@@ -419,7 +419,6 @@ exports.registerUser = async (req, res, next) => {
     if (req.files.backPhoto) {
       console.log('i am in backPhoto upload for signup')
       const urlId = await uploadImage(req.files.backPhoto, next)
-      console.log(urlId)
       patient.insurance.backPhoto.url = urlId.url
       patient.insurance.backPhoto.public_id = urlId.public_id
     }
@@ -708,20 +707,22 @@ exports.testUser = async (req, res, next) => {
 };
 
 exports.getMeds = async (req, res, next) => {
+  console.log('i am in get meds')
   try {
     const patient = await Patient.findOne({ "_id": req.user.data[1] })
     if (!patient) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         data: "No record found"
       })
     } else {
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         data: patient.currentMedications
       })
     }
   } catch (err) {
+    console.log(" i am in catch block")
     return next(new ErrorResponse(err.message, 500))
   }
 }

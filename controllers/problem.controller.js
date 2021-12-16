@@ -72,6 +72,8 @@ exports.getProblems = async (req, res, next) => {
 }
 
 exports.setProblems = async (req, res, next) => {
+    console.log("i am here")
+    console.log(req.body)
     try {
         const problem = new Problem({
             patientID: req.user.data[1],
@@ -94,9 +96,7 @@ exports.setProblems = async (req, res, next) => {
             "previousTreatment.isPreviousTreatment": req.body.isPreviousTreatment,
             "previousTreatment.previousTreatmentInclude": req.body.previousTreatmentInclude,
             "previousTreatment.otherTreatments": req.body.otherTreatments,
-            "currentIssueMedications.currentMedications": req.body.currentMedications,
-            "currentIssueMedications.painMedications": req.body.painMedications,
-            "currentIssueMedications.newMedications": req.body.newMedications,
+            currentMedications: JSON.parse(req.body.currentMedications),
             createdAt: req.body.createdAt,
             isChecked: false,
         });

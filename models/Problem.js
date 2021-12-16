@@ -141,19 +141,14 @@ const hpiProblemSchema = new mongoose.Schema({
         }
 
     },
-    currentIssueMedications: {
-        currentMedications: {
-            type: [String],
-            required: [true, 'Please add current medications']
-        },
-        painMedications: {
-            type: String,
-            required: false,
-        },
-        newMedications: {
-            type: [String],
-            required: false
-        }
+    currentMedications: {
+        type: [{
+            name: String,
+            dose: String,
+            frequency: String,
+            frequencyasneeded: String
+        }],
+        required: [true, 'Please add current medications'],
     },
     createdAt: {
         type: String,

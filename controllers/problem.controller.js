@@ -96,18 +96,18 @@ exports.setProblems = async (req, res, next) => {
             "previousTreatment.isPreviousTreatment": req.body.isPreviousTreatment,
             "previousTreatment.previousTreatmentInclude": req.body.previousTreatmentInclude,
             "previousTreatment.otherTreatments": req.body.otherTreatments,
-            currentMedications: JSON.parse(req.body.currentMedications),
+            currentMedications: req.body.currentMedications,
             createdAt: req.body.createdAt,
             isChecked: false,
         });
         const p = await Patient.findOne({ '_id': req.user.data[1] });
         problem.patientName = `${p.fname} ${p.lname}`;
         const result = await problem.save();
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: 'problem added successfully'
         });
     } catch (err) {
-        res.status(500).json({ success: false, message: err.message })
+        return res.status(500).json({ success: false, message: err.message })
     }
 }

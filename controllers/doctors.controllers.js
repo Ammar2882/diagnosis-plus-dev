@@ -279,10 +279,10 @@ const getSocial = (sH) => {
   }
 
   if (sH.smoke.isSmoke) {
-    checked.doesSmoke = `yes- ${sH.smoke.numberOfPacks} pack /daily`
+    checked.doesSmoke = `yes - ${sH.smoke.numberOfPacks} pack/daily`
   }
   if (sH.drink.isDrink) {
-    checked.doesDrink = `yes- ${sH.drink.perSitting} per sitting /${sH.drink.howOften}`
+    checked.doesDrink = `yes - ${sH.drink.perSitting} per sitting/${sH.drink.howOften}`
   }
   return checked
 }
@@ -320,7 +320,7 @@ const getCurrMed = (med) => {
   let meds = [];
   let str = "";
   med.forEach(item => {
-    str = ` ${item.name}  ${item.dose} ${item.frequency}`
+    str = ` ${item.name}  ${item.dose} ${item.frequency} ${item.frequencyasneeded}`
     meds.push(str);
   });
 
@@ -408,9 +408,9 @@ const getMedicalHistory = (medicalConditions) => {
 }
 const getGeneralExam = (generalExam) => {
   const finalGeneralExam = {
-    "whoAppears": generalExam.whoAppears[0],
-    "has": generalExam.has[0],
-    "andIs": generalExam.andIs[0]
+    "whoAppears": generalExam.whoAppears[0].toLowerCase(),
+    "has": generalExam.has[0].toLowerCase(),
+    "andIs": generalExam.andIs[0].toLowerCase()
   }
   console.log(generalExam.patientIs[0][0])
   if (generalExam.patientIs[0][0].toUpperCase() === 'a'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'e'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'i'.toUpperCase()
@@ -441,12 +441,25 @@ const getTreatments = (fullBodyCoordinates) => {
   }
   console.log(bodyCoordinates + " : " + bodyCoordinates.length)
   if (bodyCoordinates == "undefined") {
-    return 'Not added by the patient'
+    return '(Not added by the patient)'
   }
   else {
     return bodyCoordinates;
   }
 
+}
+const getProbAreasChiefCom = (areas) => {
+  let str = "";
+
+  for (q = 0; q < areas.length; q++) {
+    if (areas.length >= 1) {
+      str += `${areas[q]}, `
+    }
+    else {
+      str += "(not added by the patient)"
+    }
+  }
+  return str;
 }
 
 
@@ -486,6 +499,7 @@ exports.generateReport = async (req, res, next) => {
     str_allFactors = str_allFactors.toLowerCase();
 
     let medicationsName = getCurrMed(patient.currentMedications);
+    let newMedicationsName = getCurrMed(problem.currentMedications);
 
 
     let physicalExam = getPhysicalExam(problem.dignosis.physicalExam)
@@ -545,9 +559,10 @@ exports.generateReport = async (req, res, next) => {
         allergies: str_allergies,
         PMH: getMedicalHistory(patient.medicalConditions),
         PSH: patient.surgicalHistory,
-        newMedications: problem.currentMedications,//after med changes
-        medications: medicationsName.join(),
+        newMedications: newMedicationsName,//after med changes
+        medications: medicationsName,
         problemAreas: getTreatments(problem.fullBodyCoordinates),
+        problemAreasChiefComplaint: getProbAreasChiefCom(problem.fullBodyCoordinates),
         generalExam: getGeneralExam(problem.dignosis.generalExam),
         skin: problem.dignosis.skin,
         rosGeneral: getTreatments(patient.reviewSystem.general),

@@ -33,13 +33,13 @@
         <strong>Date:</strong> {{date}}
     </p>
 
-    <p><strong>Follow-up:</strong> {{followup}}</br>
-        <strong>Diagnosis:</strong> {{DD}}</br>
+    <strong>Follow-up:</strong> {{followup}}</br>
+    <strong>Diagnosis:</strong> {{DD}}</br>
 
-        <!-- <strong>Work Duty:</strong> {{#each treatments}} {{this}}, {{/each}} <br> -->
-        <strong>Work Duty:</strong> {{treatments}} <br>
-    <p>{{workDType}} - {{workDIncludes}} to the {{toThe}} {{toTheInclude}} greater than {{grtrThan}} until next
-        visit on {{nextVisit}}</p>
+    <!-- <strong>Work Duty:</strong> {{#each treatments}} {{this}}, {{/each}} <br> -->
+    <strong>Work Duty:</strong> {{workDType}} - {{workDIncludes}} to the {{toThe}} {{toTheInclude}} greater than
+    {{grtrThan}} until next
+    visit on {{nextVisit}} <br>
     </p>
     <!-- <h3>Medications Prescribed: {medications}</h3> <br /><br /> -->
 
@@ -47,22 +47,28 @@
         <p><strong>Chief Complaint:</strong> {{problemAreas}}</p>
         <strong>History Of Presenting Illness:</strong><br>
         <p>
-            {{name}} is a very pleasant {{age}} year old {{gender}} who presents with the complaint of {{
+            {{name}} is a very pleasant {{age}} year old {{gender}} who presents with the complaint of
+            {{problemAreasChiefComplaint}}
+            {{
             problems}}.
             {{pronoun}}, states the symptoms have been present since {{onset}}, at {{intensity}} level intensity.
             {{pronoun}} admits to {{injury}}. {{pronoun}} states symptoms are worse with {{aggrevatingFactors}} and get
             better with {{alleviatingFactors}}. <br><br>
             <strong>{{name}} has received treatment for this issue in the past including:</strong>
-            {{newMedications}}.
-            <br>
-            {{symtompsRadiate}}.
+        <ol>
+            {{#each newMedications}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ol>.
+        <br>
+        {{symtompsRadiate}}.
         </p>
 
 
         <!-- <p>{{name}} has received treatment for this issue in the past: <strong>{{isPastTreatment}}.</strong> <br> 
             <strong>Past treatment (if any) includes:</strong> {{#each pastTreatments}}{{this}}, {{/each}}</p>
          <p>{{pastTreatmentString}}</p>  -->
-        <p>{{pronoun}} has taken the following <strong>medications</strong> to help with this condition: {{medications}}
+        <p>{{pronoun}} has taken the following <strong>medications</strong> to help with this condition:
         </p>
         <ol>
             {{#each medications}}
@@ -72,8 +78,8 @@
         <p><strong>Allergies:</strong></p>
         <table style="text-align: left; border: 1px solid black; width: 40%;">
             <tr>
-                <th style="border: 1px solid black; border-collapse: collapse;">Name</th>
-                <th style="border: 1px solid black; border-collapse: collapse;">Reaction</th>
+                <th style="border: 1px solid black; border-collapse: collapse; font-size: 14px;">Name</th>
+                <th style="border: 1px solid black; border-collapse: collapse; font-size: 14px;">Reaction</th>
             </tr>
             {{#each allergies}}
             <tr>
@@ -118,9 +124,9 @@
         </p>
         <p>
             <strong>Physical Examination: </strong>
-            {{name}} is {{generalExam.patientIs}} {{gender}} that apprears {{generalExam.whoAppears}}.
-            {{pronoun}} have {{generalExam.has}}. {{pronoun}} is able to follow instructions.
-            {{pronoun}} is in {{generalExam.andIs}}. <br /> <br />
+            {{name}} is {{generalExam.patientIs}} {{gender}} that appears {{generalExam.whoAppears}}.
+            {{pronoun}} has {{generalExam.has}}. {{pronoun}} is able to follow instructions.
+            {{pronoun}} is {{generalExam.andIs}}. <br /> <br />
 
             <!-- {{#if problemArray}}
         <p1><strong>Problems: </strong><br />
@@ -182,13 +188,13 @@
         <strong>Hand Strength: </strong><br /><br />
         <table style="text-align: left; border: 1px solid black; width: 40%;">
             <tr>
-                <th style="border: 1px solid black; border-collapse: collapse;">Left Strength</th>
-                <th style="border: 1px solid black; border-collapse: collapse;">Name</th>
-                <th style="border: 1px solid black; border-collapse: collapse;">Right Strength</th>
+                <th style="border: 1px solid black; border-collapse: collapse; font-size: 14px;">Left Strength</th>
+                <th style="border: 1px solid black; border-collapse: collapse; font-size: 14px;">Name</th>
+                <th style="border: 1px solid black; border-collapse: collapse; font-size: 14px;">Right Strength</th>
             </tr>
             {{#each strength}}
             <tr>
-                <td style="border: 1px solid black; border-collapse: collapse;">{{this.left}}/5</td>
+                <td style="border: 1px solid black; border-collapse: collapse; ">{{this.left}}/5</td>
                 <td style="border: 1px solid black; border-collapse: collapse;">{{this.strengthName}}</td>
                 <td style="border: 1px solid black; border-collapse: collapse;">{{this.right}}/5</td>
             </tr>
@@ -221,13 +227,13 @@
         <p>Diagnosis, diagnostic studies, and treatment plans were reviewed with the patient at today’s visit.<br>
             Treatment plan includes: </p>
         <ul>{{#each treatmentPlan}}<li>{{this}}</li>{{/each}}</ul>
-        <p>The patient will follow up in {{followup}} </p>
+        <p>The patient will follow up in {{followup}}. </p>
     </div>
     <br> <br>
     <div>
         <strong>Work Duty:</strong>
         <p>{{workDType}} - {{workDIncludes}} to the {{toThe}} {{toTheInclude}} greater than {{grtrThan}} until next
-            visit on {{nextVisit}}</p>
+            visit on {{nextVisit}}.</p>
     </div>
 
 </body>

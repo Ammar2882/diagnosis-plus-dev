@@ -438,6 +438,9 @@ const getTreatments = (fullBodyCoordinates) => {
 }
 
 const getGeneralExam = (generalExam) => {
+  if (generalExam.whoAppears.length <= 0 || eneralExam.has.length <= 0 || generalExam.andIs <= 0 || generalExam.patientIs <= 0) {
+    return false
+  }
   const finalGeneralExam = {
     "whoAppears": generalExam.whoAppears[0].toLowerCase(),
     "has": generalExam.has[0].toLowerCase(),
@@ -475,8 +478,8 @@ exports.generateReport = async (req, res, next) => {
     const problem = await Problem.findOne({ _id: req.params.pID }).lean();
     const patient = await Patient.findOne({ _id: problem.patientID }).lean();
 
-    if (!problem || !patient) {
-      res.status(400).json({
+    if (!problem || !patient || !problem.isChecked) {
+      return res.status(400).json({
         success: false,
         data: "Something has gone wrong"
       })
@@ -497,17 +500,17 @@ exports.generateReport = async (req, res, next) => {
     const tret = [...problem.dignosis.treatmentPlan, ...problem.dignosis.medicalEquipment];
 
     const template = fs.readFileSync('./template/template.html', 'utf-8');
-    let symptoms_lower = problem.symptoms.map((item) => {
-      console.log("logging item")
-      console.log("item : ", item)
-      if (item) {
-        item.toLowerCase()
-      }
-      else {
-        item
-      }
+    //--- let symptoms_lower = problem.symptoms.map((item) => {
+    //   console.log("logging item")
+    //   console.log("item : ", item)
+    //   if (item) {
+    //     item.toLowerCase()
+    //   }
+    //   else {
+    //     item
+    //   }
 
-    });
+    //--- });
 
     let str_aggFactors = getTreatments(problem.aggravatingFactors);
     if (str_aggFactors) {
@@ -521,7 +524,7 @@ exports.generateReport = async (req, res, next) => {
 
     let medicationsName = getCurrMed(patient.currentMedications);
     let newMedicationsName = getCurrMed(problem.currentMedications);
-    console.log("new medications", newMedicationsName)
+
 
 
     let physicalExam = getPhysicalExam(problem.dignosis.physicalExam)
@@ -554,6 +557,7 @@ exports.generateReport = async (req, res, next) => {
     let ros_musculoskeletal = getTreatments(patient.reviewSystem.musculoskeletal)
     let ros_endocrine = getTreatments(patient.reviewSystem.endocrine)
     let ros_psychiatric = getTreatments(patient.reviewSystem.psychiatric)
+    let general_exam = getGeneralExam(problem.dignosis.generalExam)
 
     const options = {
       format: 'A4',
@@ -588,12 +592,12 @@ exports.generateReport = async (req, res, next) => {
         // pastTreatments: problem.previousTreatment.previousTreatmentInclude,
         pastTreatmentString: pTreatString,
         allergies: str_allergies,
-        //--- PMH: getMedicalHistory(patient.medicalConditions),
+        PMH: getMedicalHistory(patient.medicalConditions),
         PSH: patient.surgicalHistory,
         newMedications: newMedicationsName,//after med changes
         medications: medicationsName,
         problemAreasChiefComplaint: getProbAreasChiefCom(problem.fullBodyCoordinates),
-        generalExam: getGeneralExam(problem.dignosis.generalExam),
+        generalExam: general_exam ? general_exam : "General Exam Not Added",
         skin: problem.dignosis.skin,
         problemAreas: problem_areas ? problem_areas : "none",
         rosGeneral: ros_general ? ros_general : "none",

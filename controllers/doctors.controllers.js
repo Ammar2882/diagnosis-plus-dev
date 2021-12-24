@@ -392,35 +392,24 @@ const getFinger = (fingersArray) => {
 
 
 const getMedicalHistory = (medicalConditions) => {
-  finalMedicalConditions = []
-  for (e = 0; e < medicalConditions.length; e++) {
-    if (medicalConditions[e].condition.toLowerCase() === 'cancer') {
-      finalMedicalConditions.push(`Cancer with type (${medicalConditions[e].value})`)
+  if (medicalConditions) {
+    finalMedicalConditions = []
+    for (e = 0; e < medicalConditions.length; e++) {
+      if (medicalConditions[e].condition.toLowerCase() === 'cancer') {
+        finalMedicalConditions.push(`Cancer with type (${medicalConditions[e].value})`)
+      }
+      else if (medicalConditions[e].condition.toLowerCase() === 'diabetes') {
+        finalMedicalConditions.push(`Diabetes with AIC (${medicalConditions[e].value})`)
+      }
+      else {
+        finalMedicalConditions.push(`${medicalConditions[e].condition}`)
+      }
     }
-    else if (medicalConditions[e].condition.toLowerCase() === 'diabetes') {
-      finalMedicalConditions.push(`Diabetes with AIC (${medicalConditions[e].value})`)
-    }
-    else {
-      finalMedicalConditions.push(`${medicalConditions[e].condition}`)
-    }
-  }
-  return finalMedicalConditions
-}
-const getGeneralExam = (generalExam) => {
-  const finalGeneralExam = {
-    "whoAppears": generalExam.whoAppears[0].toLowerCase(),
-    "has": generalExam.has[0].toLowerCase(),
-    "andIs": generalExam.andIs[0].toLowerCase()
-  }
-  console.log(generalExam.patientIs[0][0])
-  if (generalExam.patientIs[0][0].toUpperCase() === 'a'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'e'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'i'.toUpperCase()
-    || generalExam.patientIs[0][0].toUpperCase() === 'o'.toUpperCase() || generalExam.patientIs[0][0].toUpperCase() === 'u'.toUpperCase()) {
-    finalGeneralExam.patientIs = `an ${getTreatments(generalExam.patientIs)}`
+    return finalMedicalConditions
   }
   else {
-    finalGeneralExam.patientIs = `a ${getTreatments(generalExam.patientIs)}`
+    return
   }
-  return finalGeneralExam
 }
 
 const getTreatments = (fullBodyCoordinates) => {
@@ -439,15 +428,33 @@ const getTreatments = (fullBodyCoordinates) => {
   else {
     bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[0]}`
   }
-  console.log(bodyCoordinates + " : " + bodyCoordinates.length)
+
   if (bodyCoordinates == "undefined") {
-    return '(Not added by the patient)'
+    return false
   }
   else {
     return bodyCoordinates;
   }
-
 }
+
+const getGeneralExam = (generalExam) => {
+  const finalGeneralExam = {
+    "whoAppears": generalExam.whoAppears[0].toLowerCase(),
+    "has": generalExam.has[0].toLowerCase(),
+    "andIs": generalExam.andIs[0].toLowerCase()
+  }
+  console.log(generalExam.patientIs[0][0])
+  if (generalExam.patientIs[0][0].toUpperCase() === 'A' || generalExam.patientIs[0][0].toUpperCase() === 'E' || generalExam.patientIs[0][0].toUpperCase() === 'I'
+    || generalExam.patientIs[0][0].toUpperCase() === 'O' || generalExam.patientIs[0][0].toUpperCase() === 'U') {
+    finalGeneralExam.patientIs = `an ${getTreatments(generalExam.patientIs)}`
+  }
+  else {
+    finalGeneralExam.patientIs = `a ${getTreatments(generalExam.patientIs)}`
+  }
+  return finalGeneralExam
+}
+
+
 const getProbAreasChiefCom = (areas) => {
   let str = "";
 
@@ -490,16 +497,31 @@ exports.generateReport = async (req, res, next) => {
     const tret = [...problem.dignosis.treatmentPlan, ...problem.dignosis.medicalEquipment];
 
     const template = fs.readFileSync('./template/template.html', 'utf-8');
-    let symptoms_lower = problem.symptoms.map(item => item.toLowerCase());
+    let symptoms_lower = problem.symptoms.map((item) => {
+      console.log("logging item")
+      console.log("item : ", item)
+      if (item) {
+        item.toLowerCase()
+      }
+      else {
+        item
+      }
+
+    });
 
     let str_aggFactors = getTreatments(problem.aggravatingFactors);
-    str_aggFactors = str_aggFactors.toLowerCase();
-
+    if (str_aggFactors) {
+      str_aggFactors = str_aggFactors.toLowerCase();
+    }
     let str_allFactors = getTreatments(problem.alleviatingFactors);
-    str_allFactors = str_allFactors.toLowerCase();
+    if (str_allFactors) {
+      str_allFactors = str_allFactors.toLowerCase();
+    }
+
 
     let medicationsName = getCurrMed(patient.currentMedications);
     let newMedicationsName = getCurrMed(problem.currentMedications);
+    console.log("new medications", newMedicationsName)
 
 
     let physicalExam = getPhysicalExam(problem.dignosis.physicalExam)
@@ -523,6 +545,15 @@ exports.generateReport = async (req, res, next) => {
 
     let strWDIncludes = getTreatments(problem.dignosis.workDutyIncludes);
     let strToTheIncludes = getTreatments(problem.dignosis.toTheInclude);
+
+    let problem_areas = getTreatments(problem.fullBodyCoordinates)
+    let ros_general = getTreatments(patient.reviewSystem.general)
+    let ros_neuro = getTreatments(patient.reviewSystem.neurologic)
+    let ros_skin = getTreatments(patient.reviewSystem.skin)
+    let ros_hemotologic = getTreatments(patient.reviewSystem.hemotologic)
+    let ros_musculoskeletal = getTreatments(patient.reviewSystem.musculoskeletal)
+    let ros_endocrine = getTreatments(patient.reviewSystem.endocrine)
+    let ros_psychiatric = getTreatments(patient.reviewSystem.psychiatric)
 
     const options = {
       format: 'A4',
@@ -549,7 +580,7 @@ exports.generateReport = async (req, res, next) => {
         pronoun,
         onset: moment(problem.symptomsStarted).format('MMMM Do YYYY'),
         intensity: `${problem.symptomsAtBest} to ${problem.symptomsAtWorst}`,
-        injury: `"${problem.injury.Details}"`,
+        injury: problem.injury.details ? `"admits to ${problem.injury.Details}"` : "denies any injury",
         aggrevatingFactors: str_aggFactors,
         alleviatingFactors: str_allFactors,
         symtompsRadiate: pRadiateStr,
@@ -557,40 +588,40 @@ exports.generateReport = async (req, res, next) => {
         // pastTreatments: problem.previousTreatment.previousTreatmentInclude,
         pastTreatmentString: pTreatString,
         allergies: str_allergies,
-        PMH: getMedicalHistory(patient.medicalConditions),
+        //--- PMH: getMedicalHistory(patient.medicalConditions),
         PSH: patient.surgicalHistory,
         newMedications: newMedicationsName,//after med changes
         medications: medicationsName,
-        problemAreas: getTreatments(problem.fullBodyCoordinates),
         problemAreasChiefComplaint: getProbAreasChiefCom(problem.fullBodyCoordinates),
         generalExam: getGeneralExam(problem.dignosis.generalExam),
         skin: problem.dignosis.skin,
-        rosGeneral: getTreatments(patient.reviewSystem.general),
-        rosNeuro: getTreatments(patient.reviewSystem.neurologic),
-        rosSkin: getTreatments(patient.reviewSystem.skin),
-        rosHemotologic: getTreatments(patient.reviewSystem.hemotologic),
-        rosMusculoskeletal: getTreatments(patient.reviewSystem.musculoskeletal),
-        rosEndocrine: getTreatments(patient.reviewSystem.endocrine),
-        rosPsychiatric: getTreatments(patient.reviewSystem.psychiatric),
+        problemAreas: problem_areas ? problem_areas : "none",
+        rosGeneral: ros_general ? ros_general : "none",
+        rosNeuro: ros_neuro ? ros_neuro : "none",
+        rosSkin: ros_skin ? ros_skin : "none",
+        rosHemotologic: ros_hemotologic ? ros_hemotologic : "none",
+        rosMusculoskeletal: ros_musculoskeletal ? ros_musculoskeletal : "none",
+        rosEndocrine: ros_endocrine ? ros_endocrine : "none",
+        rosPsychiatric: ros_psychiatric ? ros_psychiatric : "none",
         generalBodyParts: physicalExam[0],
         handFootLandMarks: physicalExam[1],
-        DD: str_DD,
+        DD: str_DD ? str_DD : "none",
         treatmentPlan: tret,
         range: problem.dignosis.rangeOfMotion,
         strength: problem.dignosis.strength,
         ST: STA,
         negativeST: negativeSTA,
-        mMC: str_MMC,
-        fMC: str_FMC,
-        gPMC: str_GPMC,
-        sMC: str_SMC,
+        mMC: str_MMC ? str_MMC : "none",
+        fMC: str_FMC ? str_FMC : "none",
+        gPMC: str_GPMC ? str_GPMC : "none",
+        sMC: str_SMC ? str_SMC : "none",
         maritalStatus: patient.socialHistory.maritalStatus,
         smokes: getSocial(patient.socialHistory),
         drinks: getSocial(patient.socialHistory),
         workDType: problem.dignosis.workDutyType, // Array
-        workDIncludes: strWDIncludes,
+        workDIncludes: strWDIncludes ? strWDIncludes : "none",
         toThe: problem.dignosis.toThe,
-        toTheInclude: strToTheIncludes, // Array,
+        toTheInclude: strToTheIncludes ? strToTheIncludes : "none", // Array,
         grtrThan: problem.dignosis.greaterThan,
         nextVisit: problem.dignosis.nextVisit
       },
@@ -598,7 +629,7 @@ exports.generateReport = async (req, res, next) => {
     }
     pdf.create(document, options).then(result => res.download(`${process.env.REPORT_UPLOAD_PATH}/${problem._id}.${patient._id}.pdf`))
   } catch (err) {
-    next(new ErrorResponse(err.message, 500))
+    return next(new ErrorResponse(err.message, 500))
   }
 }
 

@@ -50,7 +50,8 @@
             {{name}} is a very pleasant {{age}} year old {{gender}} who presents with the complaint of
             {{problems}} at {{problemAreas}}.
             {{pronoun}}, states the symptoms have been present since {{onset}}, at {{intensity}} level intensity.
-            {{pronoun}} admits to {{injury}}. {{pronoun}} states symptoms are worse with {{aggrevatingFactors}} and get
+            {{pronoun}} {{injury}}.
+            {{pronoun}} states symptoms are worse with {{aggrevatingFactors}} and get
             better with {{alleviatingFactors}}. <br><br>
             <strong>{{name}} has received treatment for this issue in the past including:</strong>
         <ol>
@@ -86,6 +87,12 @@
             </tr>
             {{/each}}
         </table>
+        <p><strong>Medications:</strong> </p>
+        <ol>
+            {{#each medications}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ol>
         <p><strong>Past Medical History:</strong> </p>
         <ol>
             {{#each PMH}}

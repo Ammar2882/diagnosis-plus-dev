@@ -438,7 +438,7 @@ const getTreatments = (fullBodyCoordinates) => {
 }
 
 const getGeneralExam = (generalExam) => {
-  if (generalExam.whoAppears.length <= 0 || eneralExam.has.length <= 0 || generalExam.andIs <= 0 || generalExam.patientIs <= 0) {
+  if (generalExam.whoAppears.length <= 0 || generalExam.has.length <= 0 || generalExam.andIs <= 0 || generalExam.patientIs <= 0) {
     return false
   }
   const finalGeneralExam = {

@@ -100,6 +100,7 @@ exports.setProblems = async (req, res, next) => {
             createdAt: req.body.createdAt,
             isChecked: false,
         });
+        console.log("After setting Problem : ", problem)
         const p = await Patient.findOne({ '_id': req.user.data[1] });
         problem.patientName = `${p.fname} ${p.lname}`;
         const result = await problem.save();

@@ -695,11 +695,11 @@ exports.generateReport = async (req, res, next) => {
         maritalStatus: patient.socialHistory.maritalStatus,
         smokes: getSocial(patient.socialHistory),
         drinks: getSocial(patient.socialHistory),
-        workDType: problem.dignosis.workDutyType, // Array
-        workDIncludes: strWDIncludes ? strWDIncludes : "none",
+        workDType: problem.dignosis.workDutyType ? problem.dignosis.workDutyType : '', // Array
+        workDIncludes: strWDIncludes ? strWDIncludes : '',
         toThe: problem.dignosis.toThe,
         toTheInclude: strToTheIncludes ? strToTheIncludes : "none", // Array,
-        grtrThan: problem.dignosis.greaterThan,
+        grtrThan: problem.dignosis.greaterThan ? problem.dignosis.greaterThan : '',
         nextVisit: problem.dignosis.nextVisit
       },
       path: `${process.env.REPORT_UPLOAD_PATH}/${problem._id}.${patient._id}.pdf`

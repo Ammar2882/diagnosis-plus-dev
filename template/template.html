@@ -44,7 +44,7 @@
     <!-- <h3>Medications Prescribed: {medications}</h3> <br /><br /> -->
 
     <div class="blue">
-        <p><strong>Chief Complaint:</strong> {{problemAreas}}</p>
+        <p><strong>Chief Complaint:</strong> {{problemAreas}} {{problem_concatenated}}</p>
         <strong>History Of Presenting Illness:</strong><br>
         <p>
             {{name}} is a very pleasant {{age}} year old {{gender}} who presents with the complaint of
@@ -52,21 +52,18 @@
             {{pronoun}}, states the symptoms have been present since {{onset}}, at {{intensity}} level intensity.
             {{pronoun}} {{injury}}.
             {{pronoun}} states symptoms are worse with {{aggrevatingFactors}} and get
-            better with {{alleviatingFactors}}. <br><br>
-            <strong>{{name}} has received treatment for this issue in the past including:</strong>
-        <ol>
+            better with {{alleviatingFactors}}. {{symtompsRadiate}}. <br><br>
+            <!--  <strong>{{name}} has received treatment for this issue in the past including:</strong>
+       <ol>
             {{#each medications}}
             <li>{{this}}</li>
             {{/each}}
-        </ol>.
-        <br>
-        {{symtompsRadiate}}.
+        </ol>. -->
+        <p>{{name}} has received treatment for this issue in the past:
+        <ol>{{#each pastTreatments}}<li>{{this}}</li> {{/each}}</ol>
+        <!-- <strong>Past treatment (if any) includes:</strong> {{#each pastTreatments}}{{this}}, {{/each}} -->
         </p>
-
-
-        <!-- <p>{{name}} has received treatment for this issue in the past: <strong>{{isPastTreatment}}.</strong> <br> 
-            <strong>Past treatment (if any) includes:</strong> {{#each pastTreatments}}{{this}}, {{/each}}</p>
-         <p>{{pastTreatmentString}}</p>  -->
+        <br>
         <p>{{pronoun}} has taken the following <strong>medications</strong> to help with this condition:
         </p>
         <ol>
@@ -122,7 +119,7 @@
             <strong>General:</strong> {{rosGeneral}}</br>
             <strong>Neurological:</strong> {{rosNeuro}}</br>
             <strong>Skin:</strong> {{rosSkin}}</br>
-            <strong>Hemotologic:</strong> {{rosHemotologic}}</br>
+            <strong>Hematologic:</strong> {{rosHemotologic}}</br>
             <strong>Musculoskeletal:</strong> {{rosMusculoskeletal}}</br>
             <strong>Endocrine:</strong> {{rosEndocrine}}</br>
             <strong>Psychiatric:</strong> {{rosPsychiatric}}</br>
@@ -146,6 +143,13 @@
         {{/if}} <br /> -->
 
 
+            <p1><strong>Skin Exam positive for: </strong>
+                <ul>
+                    {{#each skin}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </p1>
             <p1><strong>The Patient has tenderness to palpation at: </strong>
                 <ul style="margin-bottom:0; ">
                     {{#each handFootLandMarks}}
@@ -158,13 +162,7 @@
                     {{/each}}
                 </ul>
             </p1>
-            <p1><strong>Skin: </strong>
-                <ul>
-                    {{#each skin}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                </ul>
-            </p1>
+
 
 
 

@@ -11,6 +11,7 @@ const ddschema = new mongoose.Schema({
     }
 })
 
+
 const specialTestSchema = new mongoose.Schema({
     bodyPart: String,
     test: [{
@@ -127,13 +128,10 @@ const hpiProblemSchema = new mongoose.Schema({
     previousTreatment: {
         isPreviousTreatment: {
             type: Boolean,
-            required: [true, 'Please choose previous treatment choice'],
-            default: false
         },
         previousTreatmentInclude: {
             type: [String],
-            required: [true, 'Please add what previous treament includes'],
-            default: "None"
+
         },
         otherTreatments: {
             type: String,

@@ -1,312 +1,632 @@
 [
     {
-    "fname": "Mark",
-    "mname": "M.",
-    "lname": "Johnson",
-    "suffix": "xyz",
-    "gender": "male",
-    "password": "dummyPass234",
-    "dateOfBirth": "1998-6-20",
-    "contact": {
-        "email": "markmjohnson@gmail.com",
-        "phone": "222-222-4567",
-        "address": "221B Baker St. London, England",
-        "unit": "dummy unit",
-        "city": "Manhattan",
-        "state": "New York",
-        "zipCode": "33000"
-    },
-    "pharmacy": "dummy pharmacy",
-    "insurance": {
-        "carrier": "dummy carrier",
-        "groupId": "1122334455",
-        "membershipId": "0099334asd22",
-        "frontPhoto": "dummyfrontphoto.jpeg",
-        "backPhoto": "dummybackphoto.jpeg"
-    },
-    "emergencyContact": {
-        "name": "Michael M Jackson",
-        "phoneNumber": "999-888-9089"
-    },
-    "medicalConditions": ["Ashtma", "Headache", "leg Injury"],
-    "surgicalHistory": "surgicalHistoryPhoto.jpeg",
-    "familyHistory": {
-        "motherMConditions": ["Headache", "trauma", "Alzheimers", "flu", "fever"],
-        "fatherMConditions": ["fever", "flu", "sugar"],
-        "grandParentMConditions": ["Memory Loss", "weakness", "Headache", "leprosy"],
-        "siblingsMConditions": ["flu", "fever", "covid19", "Malaria"]
-    },
-    "socialHistory": {
-        "somke": {
-            "isSmoke": true,
-            "numberOfPacks": "3"
+        "fname": "Mark",
+        "mname": "M.",
+        "lname": "Johnson",
+        "suffix": "xyz",
+        "gender": "male",
+        "password": "dummyPass234",
+        "dateOfBirth": "1998-6-20",
+        "contact": {
+            "email": "markmjohnson@gmail.com",
+            "phone": "222-222-4567",
+            "address": "221B Baker St. London, England",
+            "unit": "dummy unit",
+            "city": "Manhattan",
+            "state": "New York",
+            "zipCode": "33000"
         },
-        "drink": {
-            "isDrink": true,
-            "howOften": "time to time",
-            "perSitting": "2"
+        "pharmacy": "dummy pharmacy",
+        "insurance": {
+            "carrier": "dummy carrier",
+            "groupId": "1122334455",
+            "membershipId": "0099334asd22",
+            "frontPhoto": "dummyfrontphoto.jpeg",
+            "backPhoto": "dummybackphoto.jpeg"
         },
-        "maritalStatus": "Married"
+        "emergencyContact": {
+            "name": "Michael M Jackson",
+            "phoneNumber": "999-888-9089"
+        },
+        "medicalConditions": [
+            "Ashtma",
+            "Headache",
+            "leg Injury"
+        ],
+        "surgicalHistory": "surgicalHistoryPhoto.jpeg",
+        "familyHistory": {
+            "motherMConditions": [
+                "Headache",
+                "trauma",
+                "Alzheimers",
+                "flu",
+                "fever"
+            ],
+            "fatherMConditions": [
+                "fever",
+                "flu",
+                "sugar"
+            ],
+            "grandParentMConditions": [
+                "Memory Loss",
+                "weakness",
+                "Headache",
+                "leprosy"
+            ],
+            "siblingsMConditions": [
+                "flu",
+                "fever",
+                "covid19",
+                "Malaria"
+            ]
+        },
+        "socialHistory": {
+            "somke": {
+                "isSmoke": true,
+                "numberOfPacks": "3"
+            },
+            "drink": {
+                "isDrink": true,
+                "howOften": "time to time",
+                "perSitting": "2"
+            },
+            "maritalStatus": "Married"
+        },
+        "currentMedications": [
+            "Panadol",
+            "ibrufen",
+            "disprin"
+        ],
+        "allergies": [
+            "smoke allergy",
+            "dust allergy",
+            "pollen allergy",
+            "pollution allergy"
+        ],
+        "reviewSystem": {
+            "general": [
+                "Fatigue",
+                "Weakness",
+                "Trouble Sleeping"
+            ],
+            "neurologic": [
+                "Dizziness",
+                "Fainting",
+                "Tingling",
+                "Tremor"
+            ],
+            "skin": [
+                "Rashes",
+                "Lumps",
+                "Itching",
+                "Dryness",
+                "Color Changes"
+            ],
+            "hemotologic": [
+                "Ease of bruising",
+                "Ease Of Bleeding"
+            ],
+            "musculoskeletal": [
+                "Stiffness",
+                "Back Pain",
+                "Redness Of Joints",
+                "Swelling Of joints",
+                "Trauma"
+            ],
+            "endocrine": [
+                "Heat or Cold Intolerance",
+                "Sweating",
+                "Frequent urination"
+            ],
+            "psychiatric": [
+                "Stress",
+                "Memory Loss",
+                "Depression"
+            ]
+        }
     },
-    "currentMedications": ["Panadol", "ibrufen", "disprin"],
-    "allergies": ["smoke allergy", "dust allergy", "pollen allergy", "pollution allergy"],
-    "reviewSystem": {
-        "general": ["Fatigue", "Weakness", "Trouble Sleeping"],
-        "neurologic": ["Dizziness", "Fainting", "Tingling", "Tremor"],
-        "skin": ["Rashes", "Lumps", "Itching", "Dryness", "Color Changes"],
-        "hemotologic": ["Ease of bruising", "Ease Of Bleeding"],
-        "musculoskeletal": ["Stiffness", "Back Pain", "Redness Of Joints", "Swelling Of joints", "Trauma"],
-        "endocrine": ["Heat or Cold Intolerance", "Sweating", "Frequent urination"],
-        "psychiatric": ["Stress", "Memory Loss", "Depression"]
-
+    {
+        "fname": "Michael",
+        "mname": "M.",
+        "lname": "Joseph",
+        "suffix": "Stalin",
+        "gender": "male",
+        "password": "dummyPass986531",
+        "dateOfBirth": "1960-7-10",
+        "contact": {
+            "email": "josephstalin@gmail.com",
+            "phone": "222-000-4567",
+            "address": "221B Baker St. Los Angeles, California",
+            "unit": "dummy unit xyz",
+            "city": "Los Angeles",
+            "state": "California",
+            "zipCode": "43000"
+        },
+        "pharmacy": "dummy pharmacy 1225",
+        "insurance": {
+            "carrier": "dummy carrier",
+            "groupId": "1122334455",
+            "membershipId": "0099334asd22",
+            "frontPhoto": "dummyfrontphoto.jpeg",
+            "backPhoto": "dummybackphoto.jpeg"
+        },
+        "emergencyContact": {
+            "name": "Michael M Jackson",
+            "phoneNumber": "999-888-9089"
+        },
+        "medicalConditions": [
+            "Ashtma",
+            "Headache",
+            "leg Injury"
+        ],
+        "surgicalHistory": "surgicalHistoryPhoto.jpeg",
+        "familyHistory": {
+            "motherMConditions": [
+                "Headache",
+                "trauma",
+                "Alzheimers",
+                "flu",
+                "fever"
+            ],
+            "fatherMConditions": [
+                "fever",
+                "flu",
+                "sugar"
+            ],
+            "grandParentMConditions": [
+                "Memory Loss",
+                "weakness",
+                "Headache",
+                "leprosy"
+            ],
+            "siblingsMConditions": [
+                "flu",
+                "fever",
+                "covid19",
+                "Malaria"
+            ]
+        },
+        "socialHistory": {
+            "somke": {
+                "isSmoke": true,
+                "numberOfPacks": "3"
+            },
+            "drink": {
+                "isDrink": true,
+                "howOften": "time to time",
+                "perSitting": "2"
+            },
+            "maritalStatus": "Married"
+        },
+        "currentMedications": [
+            "Panadol",
+            "ibrufen",
+            "disprin"
+        ],
+        "allergies": [
+            "smoke allergy",
+            "dust allergy",
+            "pollen allergy",
+            "pollution allergy"
+        ],
+        "reviewSystem": {
+            "general": [
+                "Fatigue",
+                "Weakness",
+                "Trouble Sleeping"
+            ],
+            "neurologic": [
+                "Dizziness",
+                "Fainting",
+                "Tingling",
+                "Tremor"
+            ],
+            "skin": [
+                "Rashes",
+                "Lumps",
+                "Itching",
+                "Dryness",
+                "Color Changes"
+            ],
+            "hemotologic": [
+                "Ease of bruising",
+                "Ease Of Bleeding"
+            ],
+            "musculoskeletal": [
+                "Stiffness",
+                "Back Pain",
+                "Redness Of Joints",
+                "Swelling Of joints",
+                "Trauma"
+            ],
+            "endocrine": [
+                "Heat or Cold Intolerance",
+                "Sweating",
+                "Frequent urination"
+            ],
+            "psychiatric": [
+                "Stress",
+                "Memory Loss",
+                "Depression"
+            ]
+        }
+    },
+    {
+        "fname": "Chandler",
+        "mname": "M.",
+        "lname": "Bing",
+        "suffix": "abc",
+        "gender": "male",
+        "password": "chandler123",
+        "dateOfBirth": "1950-6-20",
+        "contact": {
+            "email": "chandlerbing@gmail.com",
+            "phone": "333-000-4567",
+            "address": "221C Baker St. Los Angeles, California",
+            "unit": "dummy unit xyz",
+            "city": "Los Angeles",
+            "state": "California",
+            "zipCode": "43000"
+        },
+        "pharmacy": "dummy pharmacy 1225",
+        "insurance": {
+            "carrier": "dummy carrier",
+            "groupId": "1122334455",
+            "membershipId": "0099334asd22",
+            "frontPhoto": "dummyfrontphoto.jpeg",
+            "backPhoto": "dummybackphoto.jpeg"
+        },
+        "emergencyContact": {
+            "name": "Joey Tribiani",
+            "phoneNumber": "555-333-1596"
+        },
+        "medicalConditions": [
+            "Ashtma",
+            "Headache",
+            "leg Injury"
+        ],
+        "surgicalHistory": "surgicalHistoryPhoto.jpeg",
+        "familyHistory": {
+            "motherMConditions": [
+                "Headache",
+                "trauma",
+                "Alzheimers",
+                "flu",
+                "fever"
+            ],
+            "fatherMConditions": [
+                "fever",
+                "flu",
+                "sugar"
+            ],
+            "grandParentMConditions": [
+                "Memory Loss",
+                "weakness",
+                "Headache",
+                "leprosy"
+            ],
+            "siblingsMConditions": [
+                "flu",
+                "fever",
+                "covid19",
+                "Malaria"
+            ]
+        },
+        "socialHistory": {
+            "somke": {
+                "isSmoke": true,
+                "numberOfPacks": "3"
+            },
+            "drink": {
+                "isDrink": true,
+                "howOften": "time to time",
+                "perSitting": "2"
+            },
+            "maritalStatus": "Married"
+        },
+        "currentMedications": [
+            "Panadol",
+            "ibrufen",
+            "disprin"
+        ],
+        "allergies": [
+            "smoke allergy",
+            "dust allergy",
+            "pollen allergy",
+            "pollution allergy"
+        ],
+        "reviewSystem": {
+            "general": [
+                "Fatigue",
+                "Weakness",
+                "Trouble Sleeping"
+            ],
+            "neurologic": [
+                "Dizziness",
+                "Fainting",
+                "Tingling",
+                "Tremor"
+            ],
+            "skin": [
+                "Rashes",
+                "Lumps",
+                "Itching",
+                "Dryness",
+                "Color Changes"
+            ],
+            "hemotologic": [
+                "Ease of bruising",
+                "Ease Of Bleeding"
+            ],
+            "musculoskeletal": [
+                "Stiffness",
+                "Back Pain",
+                "Redness Of Joints",
+                "Swelling Of joints",
+                "Trauma"
+            ],
+            "endocrine": [
+                "Heat or Cold Intolerance",
+                "Sweating",
+                "Frequent urination"
+            ],
+            "psychiatric": [
+                "Stress",
+                "Memory Loss",
+                "Depression"
+            ]
+        }
+    },
+    {
+        "fname": "Joey",
+        "mname": "M.",
+        "lname": "Tribianni",
+        "suffix": "abc",
+        "gender": "male",
+        "password": "joey123",
+        "dateOfBirth": "1950-6-20",
+        "contact": {
+            "email": "joey@gmail.com",
+            "phone": "333-000-4567",
+            "address": "221C Baker St. Los Angeles, California",
+            "unit": "dummy unit xyz",
+            "city": "Los Angeles",
+            "state": "California",
+            "zipCode": "43000"
+        },
+        "pharmacy": "dummy pharmacy 1225",
+        "insurance": {
+            "carrier": "dummy carrier",
+            "groupId": "1122334455",
+            "membershipId": "0099334asd22",
+            "frontPhoto": "dummyfrontphoto.jpeg",
+            "backPhoto": "dummybackphoto.jpeg"
+        },
+        "emergencyContact": {
+            "name": "Joey Tribiani",
+            "phoneNumber": "555-333-1596"
+        },
+        "medicalConditions": [
+            "Ashtma",
+            "Headache",
+            "leg Injury"
+        ],
+        "surgicalHistory": "surgicalHistoryPhoto.jpeg",
+        "familyHistory": {
+            "motherMConditions": [
+                "Headache",
+                "trauma",
+                "Alzheimers",
+                "flu",
+                "fever"
+            ],
+            "fatherMConditions": [
+                "fever",
+                "flu",
+                "sugar"
+            ],
+            "grandParentMConditions": [
+                "Memory Loss",
+                "weakness",
+                "Headache",
+                "leprosy"
+            ],
+            "siblingsMConditions": [
+                "flu",
+                "fever",
+                "covid19",
+                "Malaria"
+            ]
+        },
+        "socialHistory": {
+            "somke": {
+                "isSmoke": true,
+                "numberOfPacks": "3"
+            },
+            "drink": {
+                "isDrink": true,
+                "howOften": "time to time",
+                "perSitting": "2"
+            },
+            "maritalStatus": "Married"
+        },
+        "currentMedications": [
+            "Panadol",
+            "ibrufen",
+            "disprin"
+        ],
+        "allergies": [
+            "smoke allergy",
+            "dust allergy",
+            "pollen allergy",
+            "pollution allergy"
+        ],
+        "reviewSystem": {
+            "general": [
+                "Fatigue",
+                "Weakness",
+                "Trouble Sleeping"
+            ],
+            "neurologic": [
+                "Dizziness",
+                "Fainting",
+                "Tingling",
+                "Tremor"
+            ],
+            "skin": [
+                "Rashes",
+                "Lumps",
+                "Itching",
+                "Dryness",
+                "Color Changes"
+            ],
+            "hemotologic": [
+                "Ease of bruising",
+                "Ease Of Bleeding"
+            ],
+            "musculoskeletal": [
+                "Stiffness",
+                "Back Pain",
+                "Redness Of Joints",
+                "Swelling Of joints",
+                "Trauma"
+            ],
+            "endocrine": [
+                "Heat or Cold Intolerance",
+                "Sweating",
+                "Frequent urination"
+            ],
+            "psychiatric": [
+                "Stress",
+                "Memory Loss",
+                "Depression"
+            ]
+        }
+    },
+    {
+        "fname": "Alishba",
+        "mname": "M.",
+        "lname": "Khan",
+        "suffix": "xyz",
+        "gender": "female",
+        "password": "dummyPass234",
+        "dateOfBirth": "1998-6-20",
+        "contact": {
+            "email": "alishba@gmail.com",
+            "phone": "222-222-4567",
+            "address": "221B Baker St. London, England",
+            "unit": "dummy unit",
+            "city": "Manhattan",
+            "state": "New York",
+            "zipCode": "33000"
+        },
+        "pharmacy": "dummy pharmacy",
+        "insurance": {
+            "carrier": "dummy carrier",
+            "groupId": "1122334455",
+            "membershipId": "0099334asc62",
+            "frontPhoto": "dummyfrontphoto.jpeg",
+            "backPhoto": "dummybackphoto.jpeg"
+        },
+        "emergencyContact": {
+            "name": "Michael M Jackson",
+            "phoneNumber": "999-888-9089"
+        },
+        "medicalConditions": [
+            "Ashtma",
+            "Headache",
+            "leg Injury"
+        ],
+        "surgicalHistory": "surgicalHistoryPhoto.jpeg",
+        "familyHistory": {
+            "motherMConditions": [
+                "Headache",
+                "trauma",
+                "Alzheimers",
+                "flu",
+                "fever"
+            ],
+            "fatherMConditions": [
+                "fever",
+                "flu",
+                "sugar"
+            ],
+            "grandParentMConditions": [
+                "Memory Loss",
+                "weakness",
+                "Headache",
+                "leprosy"
+            ],
+            "siblingsMConditions": [
+                "flu",
+                "fever",
+                "covid19",
+                "Malaria"
+            ]
+        },
+        "socialHistory": {
+            "somke": {
+                "isSmoke": true,
+                "numberOfPacks": "3"
+            },
+            "drink": {
+                "isDrink": true,
+                "howOften": "time to time",
+                "perSitting": "2"
+            },
+            "maritalStatus": "Married"
+        },
+        "currentMedications": [
+            "Panadol",
+            "ibrufen",
+            "disprin"
+        ],
+        "allergies": [
+            "smoke allergy",
+            "dust allergy",
+            "pollen allergy",
+            "pollution allergy"
+        ],
+        "reviewSystem": {
+            "general": [
+                "Fatigue",
+                "Weakness",
+                "Trouble Sleeping"
+            ],
+            "neurologic": [
+                "Dizziness",
+                "Fainting",
+                "Tingling",
+                "Tremor"
+            ],
+            "skin": [
+                "Rashes",
+                "Lumps",
+                "Itching",
+                "Dryness",
+                "Color Changes"
+            ],
+            "hemotologic": [
+                "Ease of bruising",
+                "Ease Of Bleeding"
+            ],
+            "musculoskeletal": [
+                "Stiffness",
+                "Back Pain",
+                "Redness Of Joints",
+                "Swelling Of joints",
+                "Trauma"
+            ],
+            "endocrine": [
+                "Heat or Cold Intolerance",
+                "Sweating",
+                "Frequent urination"
+            ],
+            "psychiatric": [
+                "Stress",
+                "Memory Loss",
+                "Depression"
+            ]
+        }
     }
-},
-{
-    "fname": "Michael",
-    "mname": "M.",
-    "lname": "Joseph",
-    "suffix": "Stalin",
-    "gender": "male",
-    "password": "dummyPass986531",
-    "dateOfBirth": "1960-7-10",
-    "contact": {
-        "email": "josephstalin@gmail.com",
-        "phone": "222-000-4567",
-        "address": "221B Baker St. Los Angeles, California",
-        "unit": "dummy unit xyz",
-        "city": "Los Angeles",
-        "state": "California",
-        "zipCode": "43000"
-    },
-    "pharmacy": "dummy pharmacy 1225",
-    "insurance": {
-        "carrier": "dummy carrier",
-        "groupId": "1122334455",
-        "membershipId": "0099334asd22",
-        "frontPhoto": "dummyfrontphoto.jpeg",
-        "backPhoto": "dummybackphoto.jpeg"
-    },
-    "emergencyContact": {
-        "name": "Michael M Jackson",
-        "phoneNumber": "999-888-9089"
-    },
-    "medicalConditions": ["Ashtma", "Headache", "leg Injury"],
-    "surgicalHistory": "surgicalHistoryPhoto.jpeg",
-    "familyHistory": {
-        "motherMConditions": ["Headache", "trauma", "Alzheimers", "flu", "fever"],
-        "fatherMConditions": ["fever", "flu", "sugar"],
-        "grandParentMConditions": ["Memory Loss", "weakness", "Headache", "leprosy"],
-        "siblingsMConditions": ["flu", "fever", "covid19", "Malaria"]
-    },
-    "socialHistory": {
-        "somke": {
-            "isSmoke": true,
-            "numberOfPacks": "3"
-        },
-        "drink": {
-            "isDrink": true,
-            "howOften": "time to time",
-            "perSitting": "2"
-        },
-        "maritalStatus": "Married"
-    },
-    "currentMedications": ["Panadol", "ibrufen", "disprin"],
-    "allergies": ["smoke allergy", "dust allergy", "pollen allergy", "pollution allergy"],
-    "reviewSystem": {
-        "general": ["Fatigue", "Weakness", "Trouble Sleeping"],
-        "neurologic": ["Dizziness", "Fainting", "Tingling", "Tremor"],
-        "skin": ["Rashes", "Lumps", "Itching", "Dryness", "Color Changes"],
-        "hemotologic": ["Ease of bruising", "Ease Of Bleeding"],
-        "musculoskeletal": ["Stiffness", "Back Pain", "Redness Of Joints", "Swelling Of joints", "Trauma"],
-        "endocrine": ["Heat or Cold Intolerance", "Sweating", "Frequent urination"],
-        "psychiatric": ["Stress", "Memory Loss", "Depression"]
-
-    }
-},
-{
-    "fname": "Chandler",
-    "mname": "M.",
-    "lname": "Bing",
-    "suffix": "abc",
-    "gender": "male",
-    "password": "chandler123",
-    "dateOfBirth": "1950-6-20",
-    "contact": {
-        "email": "chandlerbing@gmail.com",
-        "phone": "333-000-4567",
-        "address": "221C Baker St. Los Angeles, California",
-        "unit": "dummy unit xyz",
-        "city": "Los Angeles",
-        "state": "California",
-        "zipCode": "43000"
-    },
-    "pharmacy": "dummy pharmacy 1225",
-    "insurance": {
-        "carrier": "dummy carrier",
-        "groupId": "1122334455",
-        "membershipId": "0099334asd22",
-        "frontPhoto": "dummyfrontphoto.jpeg",
-        "backPhoto": "dummybackphoto.jpeg"
-    },
-    "emergencyContact": {
-        "name": "Joey Tribiani",
-        "phoneNumber": "555-333-1596"
-    },
-    "medicalConditions": ["Ashtma", "Headache", "leg Injury"],
-    "surgicalHistory": "surgicalHistoryPhoto.jpeg",
-    "familyHistory": {
-        "motherMConditions": ["Headache", "trauma", "Alzheimers", "flu", "fever"],
-        "fatherMConditions": ["fever", "flu", "sugar"],
-        "grandParentMConditions": ["Memory Loss", "weakness", "Headache", "leprosy"],
-        "siblingsMConditions": ["flu", "fever", "covid19", "Malaria"]
-    },
-    "socialHistory": {
-        "somke": {
-            "isSmoke": true,
-            "numberOfPacks": "3"
-        },
-        "drink": {
-            "isDrink": true,
-            "howOften": "time to time",
-            "perSitting": "2"
-        },
-        "maritalStatus": "Married"
-    },
-    "currentMedications": ["Panadol", "ibrufen", "disprin"],
-    "allergies": ["smoke allergy", "dust allergy", "pollen allergy", "pollution allergy"],
-    "reviewSystem": {
-        "general": ["Fatigue", "Weakness", "Trouble Sleeping"],
-        "neurologic": ["Dizziness", "Fainting", "Tingling", "Tremor"],
-        "skin": ["Rashes", "Lumps", "Itching", "Dryness", "Color Changes"],
-        "hemotologic": ["Ease of bruising", "Ease Of Bleeding"],
-        "musculoskeletal": ["Stiffness", "Back Pain", "Redness Of Joints", "Swelling Of joints", "Trauma"],
-        "endocrine": ["Heat or Cold Intolerance", "Sweating", "Frequent urination"],
-        "psychiatric": ["Stress", "Memory Loss", "Depression"]
-
-    }
-},
-{
-    "fname": "Joey",
-    "mname": "M.",
-    "lname": "Tribianni",
-    "suffix": "abc",
-    "gender": "male",
-    "password": "joey123",
-    "dateOfBirth": "1950-6-20",
-    "contact": {
-        "email": "joey@gmail.com",
-        "phone": "333-000-4567",
-        "address": "221C Baker St. Los Angeles, California",
-        "unit": "dummy unit xyz",
-        "city": "Los Angeles",
-        "state": "California",
-        "zipCode": "43000"
-    },
-    "pharmacy": "dummy pharmacy 1225",
-    "insurance": {
-        "carrier": "dummy carrier",
-        "groupId": "1122334455",
-        "membershipId": "0099334asd22",
-        "frontPhoto": "dummyfrontphoto.jpeg",
-        "backPhoto": "dummybackphoto.jpeg"
-    },
-    "emergencyContact": {
-        "name": "Joey Tribiani",
-        "phoneNumber": "555-333-1596"
-    },
-    "medicalConditions": ["Ashtma", "Headache", "leg Injury"],
-    "surgicalHistory": "surgicalHistoryPhoto.jpeg",
-    "familyHistory": {
-        "motherMConditions": ["Headache", "trauma", "Alzheimers", "flu", "fever"],
-        "fatherMConditions": ["fever", "flu", "sugar"],
-        "grandParentMConditions": ["Memory Loss", "weakness", "Headache", "leprosy"],
-        "siblingsMConditions": ["flu", "fever", "covid19", "Malaria"]
-    },
-    "socialHistory": {
-        "somke": {
-            "isSmoke": true,
-            "numberOfPacks": "3"
-        },
-        "drink": {
-            "isDrink": true,
-            "howOften": "time to time",
-            "perSitting": "2"
-        },
-        "maritalStatus": "Married"
-    },
-    "currentMedications": ["Panadol", "ibrufen", "disprin"],
-    "allergies": ["smoke allergy", "dust allergy", "pollen allergy", "pollution allergy"],
-    "reviewSystem": {
-        "general": ["Fatigue", "Weakness", "Trouble Sleeping"],
-        "neurologic": ["Dizziness", "Fainting", "Tingling", "Tremor"],
-        "skin": ["Rashes", "Lumps", "Itching", "Dryness", "Color Changes"],
-        "hemotologic": ["Ease of bruising", "Ease Of Bleeding"],
-        "musculoskeletal": ["Stiffness", "Back Pain", "Redness Of Joints", "Swelling Of joints", "Trauma"],
-        "endocrine": ["Heat or Cold Intolerance", "Sweating", "Frequent urination"],
-        "psychiatric": ["Stress", "Memory Loss", "Depression"]
-
-    }
-},
-{
-    "fname": "Alishba",
-    "mname": "M.",
-    "lname": "Khan",
-    "suffix": "xyz",
-    "gender": "female",
-    "password": "dummyPass234",
-    "dateOfBirth": "1998-6-20",
-    "contact": {
-        "email": "alishba@gmail.com",
-        "phone": "222-222-4567",
-        "address": "221B Baker St. London, England",
-        "unit": "dummy unit",
-        "city": "Manhattan",
-        "state": "New York",
-        "zipCode": "33000"
-    },
-    "pharmacy": "dummy pharmacy",
-    "insurance": {
-        "carrier": "dummy carrier",
-        "groupId": "1122334455",
-        "membershipId": "0099334asc62",
-        "frontPhoto": "dummyfrontphoto.jpeg",
-        "backPhoto": "dummybackphoto.jpeg"
-    },
-    "emergencyContact": {
-        "name": "Michael M Jackson",
-        "phoneNumber": "999-888-9089"
-    },
-    "medicalConditions": ["Ashtma", "Headache", "leg Injury"],
-    "surgicalHistory": "surgicalHistoryPhoto.jpeg",
-    "familyHistory": {
-        "motherMConditions": ["Headache", "trauma", "Alzheimers", "flu", "fever"],
-        "fatherMConditions": ["fever", "flu", "sugar"],
-        "grandParentMConditions": ["Memory Loss", "weakness", "Headache", "leprosy"],
-        "siblingsMConditions": ["flu", "fever", "covid19", "Malaria"]
-    },
-    "socialHistory": {
-        "somke": {
-            "isSmoke": true,
-            "numberOfPacks": "3"
-        },
-        "drink": {
-            "isDrink": true,
-            "howOften": "time to time",
-            "perSitting": "2"
-        },
-        "maritalStatus": "Married"
-    },
-    "currentMedications": ["Panadol", "ibrufen", "disprin"],
-    "allergies": ["smoke allergy", "dust allergy", "pollen allergy", "pollution allergy"],
-    "reviewSystem": {
-        "general": ["Fatigue", "Weakness", "Trouble Sleeping"],
-        "neurologic": ["Dizziness", "Fainting", "Tingling", "Tremor"],
-        "skin": ["Rashes", "Lumps", "Itching", "Dryness", "Color Changes"],
-        "hemotologic": ["Ease of bruising", "Ease Of Bleeding"],
-        "musculoskeletal": ["Stiffness", "Back Pain", "Redness Of Joints", "Swelling Of joints", "Trauma"],
-        "endocrine": ["Heat or Cold Intolerance", "Sweating", "Frequent urination"],
-        "psychiatric": ["Stress", "Memory Loss", "Depression"]
-
-    }
-}
 ]

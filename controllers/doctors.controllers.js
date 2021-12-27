@@ -369,25 +369,51 @@ const getFinger = (fingersArray) => {
   return fingers;
 }
 
-// const getProblemAreas = (fullBodyCoordinates) => {
-//   var bodyCoordinates = ''
+const getProblems = (symptoms) => {
+  var problems = ''
 
-//   if (fullBodyCoordinates.length > 1) {
-//     for (p = fullBodyCoordinates.length - 1; p >= 0; p--) {
-//       if (p <= 0) {
-//         bodyCoordinates = bodyCoordinates + ` and ${fullBodyCoordinates[p]}`
-//       }
-//       else {
-//         bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[p]}, `
-//       }
-//     }
-//   }
-//   else {
-//     bodyCoordinates = bodyCoordinates + `${fullBodyCoordinates[0]}`
-//   }
-//   console.log(bodyCoordinates)
-//   return bodyCoordinates;
-// }
+  if (symptoms.length > 1) {
+    for (w = 0; w <= symptoms.length - 1; w++) {
+      if (w >= symptoms.length - 1) {
+        if (symptoms[w] === 'Achy' || symptoms[w] === 'Sharp' || symptoms[w] === 'Dull'
+          || symptoms[w] === 'Sore' || symptoms[w] === 'Tender'
+          || symptoms[w] === 'Burning' || symptoms[w] === 'Stabbing'
+          || symptoms[w] === 'Deep' || symptoms[w] === 'Superficial'
+          || symptoms[w] === 'Bruising') {
+          problems = problems + ` and ${symptoms[w]} pain`
+        }
+        else {
+          problems = problems + ` and ${symptoms[w]}`
+        }
+      }
+      else {
+        if (symptoms[w] === 'Achy' || symptoms[w] === 'Sharp' || symptoms[w] === 'Dull' || symptoms[w] === 'Sore' || symptoms[w] === 'Tender'
+          || symptoms[w] === 'Burning' || symptoms[w] === 'Stabbing' || symptoms[w] === 'Deep' || symptoms[w] === 'Superficial' || symptoms[w] === 'Bruising') {
+          problems = problems + `${symptoms[w]} pain, `
+        }
+        else {
+          problems = problems + `${symptoms[w]}, `
+        }
+      }
+    }
+  }
+  else {
+    if (symptoms[w] === 'Achy' || symptoms[w] === 'Sharp' || symptoms[w] === 'Dull' || symptoms[w] === 'Sore' || symptoms[w] === 'Tender'
+      || symptoms[w] === 'Burning' || symptoms[w] === 'Stabbing' || symptoms[w] === 'Deep' || symptoms[w] === 'Superficial' || symptoms[w] === 'Bruising') {
+      problems = problems + `${symptoms[0]} pain`
+    }
+    else {
+      problems = problems + `${symptoms[0]}`
+    }
+  }
+
+  if (problems == "undefined") {
+    return false
+  }
+  else {
+    return problems;
+  }
+}
 
 
 
@@ -472,6 +498,52 @@ const getProbAreasChiefCom = (areas) => {
   return str;
 }
 
+const getProblemConcatenated = (symptoms) => {
+  var problems = ''
+
+  if (symptoms.length > 1) {
+    for (w = 0; w <= symptoms.length - 1; w++) {
+      if (w >= symptoms.length - 1) {
+        if (symptoms[w] === 'Achy' || symptoms[w] === 'Sharp' || symptoms[w] === 'Dull'
+          || symptoms[w] === 'Sore' || symptoms[w] === 'Tender'
+          || symptoms[w] === 'Burning' || symptoms[w] === 'Stabbing'
+          || symptoms[w] === 'Deep' || symptoms[w] === 'Superficial'
+          || symptoms[w] === 'Bruising') {
+          problems = problems + ` and pain`
+        }
+        else {
+          problems = problems + ` and ${symptoms[w]}`
+        }
+      }
+      else {
+        if (symptoms[w] === 'Achy' || symptoms[w] === 'Sharp' || symptoms[w] === 'Dull' || symptoms[w] === 'Sore' || symptoms[w] === 'Tender'
+          || symptoms[w] === 'Burning' || symptoms[w] === 'Stabbing' || symptoms[w] === 'Deep' || symptoms[w] === 'Superficial' || symptoms[w] === 'Bruising') {
+          problems = problems + `pain, `
+        }
+        else {
+          problems = problems + `${symptoms[w]}, `
+        }
+      }
+    }
+  }
+  else {
+    if (symptoms[w] === 'Achy' || symptoms[w] === 'Sharp' || symptoms[w] === 'Dull' || symptoms[w] === 'Sore' || symptoms[w] === 'Tender'
+      || symptoms[w] === 'Burning' || symptoms[w] === 'Stabbing' || symptoms[w] === 'Deep' || symptoms[w] === 'Superficial' || symptoms[w] === 'Bruising') {
+      problems = problems + `pain`
+    }
+    else {
+      problems = problems + `${symptoms[0]}`
+    }
+  }
+
+  if (problems == "undefined") {
+    return false
+  }
+  else {
+    return problems;
+  }
+}
+
 
 exports.generateReport = async (req, res, next) => {
   try {
@@ -550,6 +622,7 @@ exports.generateReport = async (req, res, next) => {
     let strToTheIncludes = getTreatments(problem.dignosis.toTheInclude);
 
     let problem_areas = getTreatments(problem.fullBodyCoordinates)
+    let problem_concatenated = getProblemConcatenated(problem.symptoms)
     let ros_general = getTreatments(patient.reviewSystem.general)
     let ros_neuro = getTreatments(patient.reviewSystem.neurologic)
     let ros_skin = getTreatments(patient.reviewSystem.skin)
@@ -571,32 +644,32 @@ exports.generateReport = async (req, res, next) => {
       data: {
         lN: patient.lname,
         fN: patient.fname,
-        DOB: moment(patient.dateOfBirth).format('MMMM Do YYYY'),
+        DOB: moment(patient.dateOfBirth).format('MMMM Do, YYYY'),
         MRN: patient.insurance.membershipId,
-        date: moment().format('MMMM Do YYYY'),
+        date: moment().format('MMMM Do, YYYY'),
         followup: problem.dignosis.suggestedFollowup,
         diagnosis: problem.dignosis.assessment,
         treatments: getTreatments(problem.dignosis.treatmentPlan),
         name: `${patient.fname} ${patient.lname}`,
         age: pAge,
         gender: patient.gender,
-        problems: getTreatments(problem.symptoms),
+        problems: getProblems(problem.symptoms),
+        problem_concatenated: problem_concatenated,
         pronoun,
-        onset: moment(problem.symptomsStarted).format('MMMM Do YYYY'),
+        onset: moment(problem.symptomsStarted).format('MMMM Do, YYYY'),
         intensity: `${problem.symptomsAtBest} to ${problem.symptomsAtWorst}`,
         injury: problem.injury.details ? `"admits to ${problem.injury.Details}"` : "denies any injury",
         aggrevatingFactors: str_aggFactors,
         alleviatingFactors: str_allFactors,
         symtompsRadiate: pRadiateStr,
-        // isPastTreatment: problem.previousTreatment.isPreviousTreatment,
-        // pastTreatments: problem.previousTreatment.previousTreatmentInclude,
+        isPastTreatment: problem.previousTreatment.isPreviousTreatment,
+        pastTreatments: problem.previousTreatment.previousTreatmentInclude,
         pastTreatmentString: pTreatString,
         allergies: str_allergies,
         PMH: getMedicalHistory(patient.medicalConditions),
         PSH: patient.surgicalHistory,
         newMedications: newMedicationsName,//after med changes
         medications: medicationsName,
-        problemAreasChiefComplaint: getProbAreasChiefCom(problem.fullBodyCoordinates),
         generalExam: general_exam ? general_exam : "General Exam Not Added",
         skin: problem.dignosis.skin,
         problemAreas: problem_areas ? problem_areas : "none",
